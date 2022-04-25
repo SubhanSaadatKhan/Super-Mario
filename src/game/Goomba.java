@@ -7,21 +7,32 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * A little fungus guy.
  */
-public class Goomba extends Actor {
-	private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+public class Goomba extends Enemy {
+//	private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+	private Map<Integer, Behaviour> behaviours = new TreeMap<>();
 
 	/**
 	 * Constructor.
 	 */
 	public Goomba() {
 		super("Goomba", 'g', 50);
-		this.behaviours.put(10, new WanderBehaviour());
+		this.behaviours.put(0,new AttackBehaviour());
+		this.behaviours.put(2, new WanderBehaviour());
+
+	}
+
+	@Override
+	protected IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(10, "kick");
 	}
 
 	/**
@@ -39,6 +50,8 @@ public class Goomba extends Actor {
 		// it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
 		if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 			actions.add(new AttackAction(this,direction));
+			this.behaviours.put(1, new FollowBehaviour(otherActor));
+
 		}
 		return actions;
 	}
@@ -49,6 +62,14 @@ public class Goomba extends Actor {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+//		if(Math.random() <= 0.1){
+//			map.removeActor(this);
+//			return new DoNothingAction();
+//		}8
+
+
+
+
 		for(Behaviour Behaviour : behaviours.values()) {
 			Action action = Behaviour.getAction(this, map);
 			if (action != null)
