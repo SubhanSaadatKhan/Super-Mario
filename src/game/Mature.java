@@ -42,6 +42,9 @@ public class Mature extends Tree implements JumpableGround{
                     fertile_soil_around = false;
                 }
             }
+            if(Math.random() <= 0.15 && !location.containsAnActor()){
+                location.addActor(new Koopa());
+            }
         }
     }
 

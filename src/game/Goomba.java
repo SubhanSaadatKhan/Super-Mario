@@ -32,6 +32,7 @@ public class Goomba extends Enemy {
 
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
+
 		return new IntrinsicWeapon(10, "kick");
 	}
 
@@ -46,14 +47,8 @@ public class Goomba extends Enemy {
 	 */
 	@Override
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-		ActionList actions = new ActionList();
-		// it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
-		if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-			actions.add(new AttackAction(this,direction));
-			this.behaviours.put(1, new FollowBehaviour(otherActor));
-
-		}
-		return actions;
+		this.behaviours.put(1, new FollowBehaviour(otherActor));
+		return super.allowableActions(otherActor,direction,map);
 	}
 
 	/**
@@ -62,14 +57,10 @@ public class Goomba extends Enemy {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-//		if(Math.random() <= 0.1){
-//			map.removeActor(this);
-//			return new DoNothingAction();
-//		}8
-
-
-
-
+		if(Math.random() <= 0.1){
+			map.removeActor(this);
+			return new DoNothingAction();
+		}
 		for(Behaviour Behaviour : behaviours.values()) {
 			Action action = Behaviour.getAction(this, map);
 			if (action != null)
