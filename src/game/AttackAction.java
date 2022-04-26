@@ -60,7 +60,7 @@ public class AttackAction extends Action {
 				drop.execute(target, map);
 
 
-			if(target.getDisplayChar()=='K'){
+			if(target.getDisplayChar()=='K'){ //do not remove an unconscious Koopa as it will go into dormant state
 
 			}
 			else{

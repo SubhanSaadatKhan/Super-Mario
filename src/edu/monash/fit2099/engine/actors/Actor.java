@@ -227,7 +227,7 @@ public abstract class Actor implements Capable, Printable {
 	 * @return a freshly-instantiated IntrinsicWeapon
 	 */
 	protected IntrinsicWeapon getIntrinsicWeapon() {
-		return new IntrinsicWeapon(100, "punches");
+		return new IntrinsicWeapon(5, "punches");
 	}
 
 	/**

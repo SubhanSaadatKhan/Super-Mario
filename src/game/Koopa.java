@@ -11,6 +11,9 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Class representing Koopa a little turtle.
+ */
 public class Koopa extends Enemy{
 
     private Map<Integer, Behaviour> behaviours = new TreeMap<>();
@@ -24,31 +27,45 @@ public class Koopa extends Enemy{
         this.behaviours.put(2, new WanderBehaviour());
     }
 
-    public void changeDisplayChar(char displayChar){
-        super.setDisplayChar(displayChar);
-    }
-
+    /**
+     * Creates a new IntrinsicWeapon
+     * @return
+     */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(50, "punch");
     }
 
+    /**
+     * Adds the Attack action to the actionlist of player
+     *
+     * @param otherActor the Actor that might perform an action.
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     *
+     * @return list of actions
+     * @see Status#HOSTILE_TO_ENEMY
+     */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-//        if(this.getDisplayChar()=='D'){
-//            return
-//        }
-//        else{
-//            this.behaviours.put(1, new FollowBehaviour(otherActor));
-//            return super.allowableActions(otherActor,direction,map);
-//        }
-        this.behaviours.put(1, new FollowBehaviour(otherActor));
+        this.behaviours.put(1, new FollowBehaviour(otherActor)); //attack action takes place thus follow behaviour implemented
         return super.allowableActions(otherActor,direction,map);
 
     }
 
+    /**
+     * Select and return an action to perform on the current turn.
+     *
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     *
+     * @return the Action to be performed
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        //A dormant state Koopa will do nothing.
         if(!this.isConscious()){
             if(this.getDisplayChar()=='K'){
                 this.setDisplayChar('D');

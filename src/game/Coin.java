@@ -2,6 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.items.Item;
 
+/**
+ * A class representing Coin
+ */
 public class Coin extends Item {
     private int worth;
 
