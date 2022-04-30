@@ -1,15 +1,20 @@
-package game;
+package game.actors;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.Status;
+import game.actions.AttackAction;
+import game.reset.Resettable;
+
+import static game.Status.RESETTABLE;
 
 /**
  * An abstract Class representing Enemy of the player.
  */
-public abstract class Enemy extends Actor {
+public abstract class Enemy extends Actor implements Resettable {
 
     /**
      * Constructor
@@ -50,4 +55,9 @@ public abstract class Enemy extends Actor {
      */
     @Override
     public abstract Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display);
+
+    @Override
+    public void resetInstance() {
+        this.addCapability(RESETTABLE);
+    }
 }

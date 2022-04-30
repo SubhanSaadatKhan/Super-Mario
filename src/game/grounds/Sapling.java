@@ -1,14 +1,18 @@
-package game;
+package game.grounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import game.item.Coin;
+import game.actions.JumpAction;
+
+import static game.Status.*;
 
 /**
  * Class representing Sapling the second stage of a Tree.
  */
-public class Sapling extends Tree implements JumpableGround{
+public class Sapling extends Tree implements JumpableGround {
     private int value;
 
     public Sapling(){
@@ -22,6 +26,13 @@ public class Sapling extends Tree implements JumpableGround{
      */
     @Override
     public void tick(Location location) {
+        if (this.hasCapability(RESETTABLE)) {
+            if (Math.random() <= 0.5) {
+                location.setGround(new Dirt());
+            }
+            this.removeCapability(RESETTABLE);
+            return;
+        }
         //grows into Mature after 10 turns
         value += 1;
         if(value % 10 == 0){
@@ -58,6 +69,16 @@ public class Sapling extends Tree implements JumpableGround{
     @Override
     public String jumped(Actor act, Location at, GameMap map) {
         Actor actor = act;
+        if (actor.hasCapability(INVINCIBLE)) {
+            map.moveActor(act,at); //moves actor on a successful jump
+            at.setGround(new Dirt());
+            at.addItem(new Coin(5));
+            return actor + " had moved to (" + at.x() + "," + at.y() + ")!";
+        }
+        if (actor.hasCapability(TALL)) {
+            map.moveActor(act,at); //moves actor on a successful jump
+            return actor + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
+        }
         if(Math.random() <= 0.8) {
             map.moveActor(act,at); //moves actor on a successful jump
             return actor + " had a successfully jump at Sapling(" + at.x() + "," + at.y() + ")!";

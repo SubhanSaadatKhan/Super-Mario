@@ -1,19 +1,23 @@
-package game;
+package game.grounds;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.reset.Resettable;
+
+import static game.Status.RESETTABLE;
+
 /**
  * An Abstract Class representing the Tree.
  */
-public abstract class Tree extends Ground {
-
+public abstract class Tree extends Ground implements Resettable {
     /**
      * Constructor
      * @param treeStage
      */
     public Tree(char treeStage) {
         super(treeStage);
+        this.registerInstance();
     }
 
     /**
@@ -34,5 +38,10 @@ public abstract class Tree extends Ground {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void resetInstance() {
+        this.addCapability(RESETTABLE);
     }
 }

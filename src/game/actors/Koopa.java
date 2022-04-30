@@ -1,4 +1,4 @@
-package game;
+package game.actors;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -7,14 +7,23 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.Status;
+import game.actors.Enemy;
+import game.behaviours.AttackBehaviour;
+import game.behaviours.Behaviour;
+import game.behaviours.FollowBehaviour;
+import game.behaviours.WanderBehaviour;
+import game.reset.Resettable;
 
 import java.util.Map;
 import java.util.TreeMap;
 
+import static game.Status.RESETTABLE;
+
 /**
  * Class representing Koopa a little turtle.
  */
-public class Koopa extends Enemy{
+public class Koopa extends Enemy {
 
     private Map<Integer, Behaviour> behaviours = new TreeMap<>();
 
@@ -25,6 +34,7 @@ public class Koopa extends Enemy{
         super("Koopa", 'K', 100);
         this.behaviours.put(0,new AttackBehaviour());
         this.behaviours.put(2, new WanderBehaviour());
+        this.registerInstance();
     }
 
     /**
@@ -65,6 +75,11 @@ public class Koopa extends Enemy{
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        if (this.hasCapability(RESETTABLE)) {
+            map.removeActor(this);
+            this.removeCapability(RESETTABLE);
+            return new DoNothingAction();
+        }
         //A dormant state Koopa will do nothing.
         if(!this.isConscious()){
             if(this.getDisplayChar()=='K'){

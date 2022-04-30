@@ -8,6 +8,12 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
+import game.actors.Player;
+import game.grounds.Dirt;
+import game.grounds.Floor;
+import game.grounds.Sprout;
+import game.grounds.Wall;
+import game.item.SuperMushroom;
 
 /**
  * The main class for the Mario World game.
@@ -50,7 +56,7 @@ public class Application {
 
 			// FIXME: the Goomba should be generated from the Tree
 //			gameMap.at(35, 10).addActor(new Goomba());
-
+			gameMap.at(42, 9).addItem(new SuperMushroom());
 			world.run();
 
 	}

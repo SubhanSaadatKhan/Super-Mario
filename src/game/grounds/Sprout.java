@@ -1,9 +1,18 @@
-package game;
+package game.grounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import game.actions.JumpAction;
+import game.actors.Goomba;
+import game.grounds.JumpableGround;
+import game.grounds.Sapling;
+import game.grounds.Tree;
+import game.item.Coin;
+
+import static game.Status.*;
+
 /**
  * Class representing Sprout the first stage of a Tree.
  */
@@ -24,6 +33,13 @@ public class Sprout extends Tree implements JumpableGround {
      */
     @Override
     public void tick(Location location) {
+        if (this.hasCapability(RESETTABLE)) {
+            if (Math.random() <= 0.5) {
+                location.setGround(new Dirt());
+            }
+            this.removeCapability(RESETTABLE);
+            return;
+        }
         //Grows into sapling after 10 turns
         value += 1;
         if(value % 10 == 0){
@@ -49,6 +65,16 @@ public class Sprout extends Tree implements JumpableGround {
     @Override
     public String jumped(Actor act, Location at, GameMap map) {
         Actor actor = act;
+        if (actor.hasCapability(INVINCIBLE)) {
+            map.moveActor(act,at); //moves actor on a successful jump
+            at.setGround(new Dirt());
+            at.addItem(new Coin(5));
+            return actor + " had moved to (" + at.x() + "," + at.y() + ")!";
+        }
+        if (actor.hasCapability(TALL)) {
+            map.moveActor(act,at); //moves actor on a successful jump
+            return actor + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
+        }
         if(Math.random() <= 0.9) {
             map.moveActor(act,at); //moves actor on a successful jump
             return actor + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
@@ -92,4 +118,5 @@ public class Sprout extends Tree implements JumpableGround {
     public String toString() {
         return "Sprout";
     }
+
 }

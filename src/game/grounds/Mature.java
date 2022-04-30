@@ -1,19 +1,24 @@
-package game;
+package game.grounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.actions.JumpAction;
+import game.actors.Koopa;
+import game.item.Coin;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import static game.Status.*;
+
 /**
  * Class representing Mature the third stage of a Tree.
  */
-public class Mature extends Tree implements JumpableGround{
+public class Mature extends Tree implements JumpableGround {
     private int value;
     private boolean fertile_soil_around = true;
     private Random random;
@@ -32,6 +37,13 @@ public class Mature extends Tree implements JumpableGround{
      */
     @Override
     public void tick(Location location) {
+        if (this.hasCapability(RESETTABLE)) {
+            if (Math.random() <= 0.5) {
+                location.setGround(new Dirt());
+            }
+            this.removeCapability(RESETTABLE);
+            return;
+        }
         //turns into dust
         value += 1;
         if(Math.random() <= 0.2) {
@@ -86,6 +98,16 @@ public class Mature extends Tree implements JumpableGround{
     @Override
     public String jumped(Actor act, Location at, GameMap map) {
         Actor actor = act;
+        if (actor.hasCapability(INVINCIBLE)) {
+            map.moveActor(act,at); //moves actor on a successful jump
+            at.setGround(new Dirt());
+            at.addItem(new Coin(5));
+            return actor + " had moved to (" + at.x() + "," + at.y() + ")!";
+        }
+        if (actor.hasCapability(TALL)) {
+            map.moveActor(act,at); //moves actor on a successful jump
+            return actor + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
+        }
         if(Math.random() <= 0.7) {
             map.moveActor(act,at); //moves actor on a successful jump
             return actor + " had a successfully jump at Mature(" + at.x() + "," + at.y() + ")!" ;

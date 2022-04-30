@@ -1,10 +1,14 @@
-package game;
+package game.behaviours;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import game.actions.AttackAction;
+
+import static game.Status.TALL;
+
 /**
  * A class that carries an attack action when the target actor is in his surroundings.
  */
@@ -29,6 +33,10 @@ public class AttackBehaviour implements Behaviour {
             if(actorPlayer!=null){
                 char ch = actorPlayer.getDisplayChar();
                 if (ch == 'm') {
+                    return new AttackAction(actorPlayer, direction);
+                }
+                else if (ch == 'M') {
+                    actorPlayer.removeCapability(TALL);
                     return new AttackAction(actorPlayer, direction);
                 }
             }

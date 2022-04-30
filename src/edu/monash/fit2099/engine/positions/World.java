@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.ActorLocationsIterator;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
+import game.actions.ResetAction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -116,6 +117,9 @@ public class World {
 		GameMap map = here.map();
 
 		ActionList actions = new ActionList();
+		if (ResetAction.available()) {
+			actions.add(new ResetAction());
+		}
 		for (Item item : actor.getInventory()) {
 			actions.add(item.getAllowableActions());
 			// Game rule. If you're carrying it, you can drop it.

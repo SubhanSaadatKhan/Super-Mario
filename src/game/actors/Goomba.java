@@ -1,4 +1,4 @@
-package game;
+package game.actors;
 
 
 import edu.monash.fit2099.engine.actions.Action;
@@ -8,10 +8,19 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.Status;
+import game.actors.Enemy;
+import game.behaviours.AttackBehaviour;
+import game.behaviours.Behaviour;
+import game.behaviours.FollowBehaviour;
+import game.behaviours.WanderBehaviour;
+import game.grounds.Dirt;
+import game.reset.Resettable;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
+
+import static game.Status.RESETTABLE;
 
 /**
  * Class representing Goomba a little fungus guy.
@@ -27,7 +36,7 @@ public class Goomba extends Enemy {
 		super("Goomba", 'g', 50);
 		this.behaviours.put(0,new AttackBehaviour());
 		this.behaviours.put(2, new WanderBehaviour());
-
+		this.registerInstance();
 	}
 	/**
 	 * Creates a new IntrinsicWeapon
@@ -67,6 +76,11 @@ public class Goomba extends Enemy {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		if (this.hasCapability(RESETTABLE)) {
+			map.removeActor(this);
+			this.removeCapability(RESETTABLE);
+			return new DoNothingAction();
+		}
 		// self-destruct Goomba
 		if(Math.random() <= 0.1){
 			map.removeActor(this);

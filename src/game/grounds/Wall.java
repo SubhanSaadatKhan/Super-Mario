@@ -1,10 +1,16 @@
-package game;
+package game.grounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.actions.JumpAction;
+import game.grounds.JumpableGround;
+import game.item.Coin;
+
+import static game.Status.INVINCIBLE;
+import static game.Status.TALL;
 
 /**
  * Class representing Solid Wall.
@@ -47,6 +53,16 @@ public class Wall extends Ground implements JumpableGround {
 	@Override
 	public String jumped(Actor act, Location at, GameMap map) {
 		Actor actor = act;
+		if (actor.hasCapability(INVINCIBLE)) {
+			map.moveActor(act,at); //moves actor on a successful jump
+			at.setGround(new Dirt());
+			at.addItem(new Coin(5));
+			return actor + " had moved to (" + at.x() + "," + at.y() + ")!";
+		}
+		if (actor.hasCapability(TALL)) {
+			map.moveActor(act,at); //moves actor on a successful jump
+			return actor + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
+		}
 		if(Math.random() <= 0.8) {
 			map.moveActor(act,at);
 			return actor + " had a successfully jump at Wall(" + at.x() + "," + at.y() + ")!";
