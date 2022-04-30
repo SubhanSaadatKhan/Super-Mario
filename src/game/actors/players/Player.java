@@ -1,15 +1,13 @@
-package game.actors;
+package game.actors.players;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
-import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
-import game.actions.ResetAction;
-import game.item.InvincibleEffect;
+import game.effects.InvincibleEffect;
 import game.reset.Resettable;
 
 import static game.Status.*;

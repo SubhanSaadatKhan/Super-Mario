@@ -1,4 +1,4 @@
-package game.item;
+package game.item.consumables;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
@@ -9,14 +9,14 @@ import game.actions.ConsumeItemAction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PowerStar extends Item implements Consumable {
-    private int turns;
+import static game.Status.TALL;
+
+public class SuperMushroom extends Item implements Consumable {
     /***
      * Constructor.
      */
-    public PowerStar() {
-        super("Power Star", '*', false);
-        turns = 10;
+    public SuperMushroom() {
+        super("Super Mushroom", '^', false);
     }
 
     @Override
@@ -29,29 +29,13 @@ public class PowerStar extends Item implements Consumable {
     @Override
     public void Consumed(Actor actor, Location currentLocation) {
         if (actor.getInventory().contains(this)) {
-            actor.heal(200);
-            actor.addItemToInventory(new InvincibleEffect("INVINCIBLE", ' ', false));
+            actor.increaseMaxHp(50);
+            actor.addCapability(TALL);
             actor.removeItemFromInventory(this);
         }
         else if (currentLocation.getItems().contains(this)) {
-            actor.heal(200);
-            actor.addItemToInventory(new InvincibleEffect("INVINCIBLE", ' ', false));
-            currentLocation.removeItem(this);
-        }
-    }
-
-    @Override
-    public void tick(Location currentLocation, Actor actor) {
-        turns -= 1;
-        if (turns == 0) {
-            actor.removeItemFromInventory(this);
-        }
-    }
-
-    @Override
-    public void tick(Location currentLocation) {
-        turns -= 1;
-        if (turns == 0) {
+            actor.increaseMaxHp(50);
+            actor.addCapability(TALL);
             currentLocation.removeItem(this);
         }
     }

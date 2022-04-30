@@ -1,27 +1,39 @@
-package game.grounds;
+package game.grounds.jumpablegrounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
-import game.item.Coin;
 import game.actions.JumpAction;
+import game.actors.enemies.Koopa;
+import game.grounds.Dirt;
+import game.item.Coin;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 import static game.Status.*;
 
 /**
- * Class representing Sapling the second stage of a Tree.
+ * Class representing Mature the third stage of a Tree.
  */
-public class Sapling extends Tree implements JumpableGround {
+public class Mature extends Tree implements JumpableGround {
     private int value;
-
-    public Sapling(){
-        super('t');
-        value = 0;
-    }
+    private boolean fertile_soil_around = true;
+    private Random random;
 
     /**
-     * Sapling produces Coin and grow into Mature with the passage of time
+     * Constructor
+     */
+    public Mature(){
+        super('T');
+        value = 0;
+        random = new Random();
+    }
+    /**
+     * Sapling produces Sprout, spawns Koopa and turn into Dirt with the passage of time
      * @param location The location of the Ground
      */
     @Override
@@ -33,19 +45,37 @@ public class Sapling extends Tree implements JumpableGround {
             this.removeCapability(RESETTABLE);
             return;
         }
-        //grows into Mature after 10 turns
+        //turns into dust
         value += 1;
-        if(value % 10 == 0){
-            location.setGround(new Mature());
+        if(Math.random() <= 0.2) {
+            location.setGround(new Dirt());
         }
-        //produces $20 coin
         else{
-            if(Math.random() <= 0.1){
-                location.addItem(new Coin(20));
+            //Grows new sprouts on fertile ground
+            if (value % 5 == 0 && fertile_soil_around) {
+                ArrayList<Location> fertileLocations = new ArrayList<>();
+
+                for (Exit item : new ArrayList<Exit>(location.getExits())) { // Copy the list in case the item wants to leave
+                    Location by = item.getDestination();
+                    Ground gr = by.getGround();
+                    char ch = gr.getDisplayChar();
+                    if(ch=='.'){
+                        fertileLocations.add(by);
+                    }
+                }
+                if(!fertileLocations.isEmpty()){
+                    fertileLocations.get(random.nextInt(fertileLocations.size())).setGround(new Sprout());
+                }
+                else{
+                    fertile_soil_around = false;
+                }
+            }
+            //spawns koopa
+            if(Math.random() <= 0.15 && !location.containsAnActor()){
+                location.addActor(new Koopa());
             }
         }
     }
-
     /**
      * Method to check if a particular actor is allowed to enter a ground
      * @param actor the Actor to check
@@ -58,7 +88,7 @@ public class Sapling extends Tree implements JumpableGround {
     }
 
     /**
-     * Implement the criteria and consequences of jumping a Sapling
+     * Implement the criteria and consequences of jumping a Mature
      *
      * @param act indicate who jumps the jumpable ground
      * @param at to indicate where in the game map the jumpable ground is jumped
@@ -79,14 +109,13 @@ public class Sapling extends Tree implements JumpableGround {
             map.moveActor(act,at); //moves actor on a successful jump
             return actor + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
         }
-        if(Math.random() <= 0.8) {
+        if(Math.random() <= 0.7) {
             map.moveActor(act,at); //moves actor on a successful jump
-            return actor + " had a successfully jump at Sapling(" + at.x() + "," + at.y() + ")!";
-
+            return actor + " had a successfully jump at Mature(" + at.x() + "," + at.y() + ")!" ;
         }
         else {
-            actor.hurt(20); //damages actor on an unsuccessful jump
-            return actor + " fails to jump the Sapling, faced a 20 fall damage!";
+            actor.hurt(30); //damages actor on an unsuccessful jump
+            return actor + " fails to jump the Mature,faced a 30 fall damage!";
         }
     }
     /**
@@ -109,6 +138,6 @@ public class Sapling extends Tree implements JumpableGround {
      */
     @Override
     public String toString() {
-        return "Sapling";
+        return "Mature";
     }
 }

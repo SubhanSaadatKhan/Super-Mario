@@ -1,4 +1,4 @@
-package game.actors;
+package game.actors.enemies;
 
 
 import edu.monash.fit2099.engine.actions.Action;
@@ -9,13 +9,11 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Status;
-import game.actors.Enemy;
+import game.actors.enemies.Enemy;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
-import game.grounds.Dirt;
-import game.reset.Resettable;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -33,7 +31,7 @@ public class Goomba extends Enemy {
 	 * Constructor.
 	 */
 	public Goomba() {
-		super("Goomba", 'g', 50);
+		super("Goomba", 'g', 20);
 		this.behaviours.put(0,new AttackBehaviour());
 		this.behaviours.put(2, new WanderBehaviour());
 		this.registerInstance();

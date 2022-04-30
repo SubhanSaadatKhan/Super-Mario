@@ -1,4 +1,4 @@
-package game.grounds;
+package game.grounds.jumpablegrounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.JumpAction;
-import game.grounds.JumpableGround;
+import game.grounds.Dirt;
 import game.item.Coin;
 
 import static game.Status.INVINCIBLE;
