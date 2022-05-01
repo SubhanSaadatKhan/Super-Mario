@@ -34,6 +34,6 @@ public class TradingAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " buys " + target + " (" + price + ")";
+        return actor + " buys a " + target + " (" + price + ")";
     }
 }

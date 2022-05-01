@@ -10,6 +10,7 @@ import game.actions.TradingAction;
 import game.item.Coin;
 import game.item.consumables.PowerStar;
 import game.item.consumables.SuperMushroom;
+import game.item.weapon.Wrench;
 
 public class Toad extends Actor {
 
@@ -29,6 +30,7 @@ public class Toad extends Actor {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
+        actions.add(new TradingAction(new Wrench(), new Coin(200)));
         actions.add(new TradingAction(new SuperMushroom(), new Coin(400)));
         actions.add(new TradingAction(new PowerStar(), new Coin(600)));
         return actions;
