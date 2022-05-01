@@ -20,6 +20,11 @@ public class PowerStar extends Item implements Consumable {
         turns = 10;
     }
 
+    public PowerStar(int turns) {
+        super("Power Star", '*', false);
+        this.turns = turns;
+    }
+
     @Override
     public List<Action> getAllowableActions() {
         List<Action> actions = new ArrayList<>();
@@ -55,5 +60,10 @@ public class PowerStar extends Item implements Consumable {
         if (turns == 0) {
             currentLocation.removeItem(this);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "PowerStar(" + turns + "turns" + ')';
     }
 }

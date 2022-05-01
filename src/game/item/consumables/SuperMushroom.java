@@ -39,4 +39,9 @@ public class SuperMushroom extends Item implements Consumable {
             currentLocation.removeItem(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return "SuperMushroom";
+    }
 }

@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.Status;
 import game.effects.InvincibleEffect;
+import game.item.Coin;
 import game.reset.Resettable;
 
 import static game.Status.*;
@@ -18,6 +19,7 @@ import static game.Status.*;
 public class Player extends Actor implements Resettable {
 
 	private final Menu menu = new Menu();
+	private final Coin wallet;
 
 	/**
 	 * Constructor.
@@ -29,6 +31,8 @@ public class Player extends Actor implements Resettable {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
+		wallet = new Coin(0, false);
+		this.addItemToInventory(wallet);
 		this.registerInstance();
 	}
 
@@ -51,6 +55,10 @@ public class Player extends Actor implements Resettable {
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
+	}
+
+	public Coin getWallet() {
+		return wallet;
 	}
 
 	@Override
