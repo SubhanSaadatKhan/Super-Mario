@@ -18,7 +18,7 @@ public class InvincibleEffect extends Item {
     public InvincibleEffect(String name, char displayChar, boolean portable) {
         super(name, displayChar, portable);
         this.addCapability(INVINCIBLE);
-        turns = 10;
+        turns = 11;
     }
 
     @Override
