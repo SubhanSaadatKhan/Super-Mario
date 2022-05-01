@@ -15,6 +15,7 @@ import game.grounds.Floor;
 import game.grounds.jumpablegrounds.Sprout;
 import game.grounds.jumpablegrounds.Wall;
 import game.item.Coin;
+import game.item.consumables.PowerStar;
 import game.item.consumables.SuperMushroom;
 
 /**

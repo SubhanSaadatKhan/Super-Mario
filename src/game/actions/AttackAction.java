@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actors.enemies.Koopa;
 import game.item.consumables.SuperMushroom;
 
-import static game.Status.INVINCIBLE;
+import static game.Status.*;
 
 /**
  * Special Action for attacking other Actors.
@@ -57,6 +57,19 @@ public class AttackAction extends Action {
 			return result;
 		}
 
+		if (target.getDisplayChar() == 'D' && target.hasCapability(DORMANT)) {
+			if (actor.hasCapability(DESTRUCTIVE)) {
+				if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
+					return actor + " misses " + target + ".";
+				}
+				map.removeActor(target);
+				map.locationOf(target).addItem(new SuperMushroom());
+				result = System.lineSeparator() + target + " is killed.";
+				return result;
+			}
+			return "Wrench is needed to destroy Koopa's shell.";
+		}
+
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
 			return actor + " misses " + target + ".";
 		}
@@ -76,9 +89,9 @@ public class AttackAction extends Action {
 			for (Action drop : dropActions)
 				drop.execute(target, map);
 
-
 			if(target.getDisplayChar()=='K'){ //do not remove an unconscious Koopa as it will go into dormant state
-
+				Koopa koopa = (Koopa) target;
+				koopa.dormant();
 			}
 			else{
 				// remove actor

@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.actors.ActorLocationsIterator;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import game.actions.ResetAction;
+import game.actors.players.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;

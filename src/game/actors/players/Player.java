@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.effects.InvincibleEffect;
 import game.item.Coin;
@@ -53,6 +54,13 @@ public class Player extends Actor implements Resettable {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
+		if (this.hasCapability(INVINCIBLE)) {
+			display.println(this + " is INVINCIBLE");
+		}
+		Location location = map.locationOf(this);
+		display.println(this.getInfo() + " at (" + location.x() + ", " + location.y() + ")");
+		display.println("wallet: $" + this.getWallet().getWorth());
+
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
 	}
@@ -69,5 +77,11 @@ public class Player extends Actor implements Resettable {
 	@Override
 	public void resetInstance() {
 		this.addCapability(RESETTABLE);
+	}
+
+	public String getInfo() {
+		String info = "";
+		info += this + this.printHp();
+		return info;
 	}
 }

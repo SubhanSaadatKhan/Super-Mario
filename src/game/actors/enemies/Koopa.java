@@ -17,6 +17,7 @@ import game.behaviours.WanderBehaviour;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static game.Status.DORMANT;
 import static game.Status.RESETTABLE;
 
 /**
@@ -80,10 +81,7 @@ public class Koopa extends Enemy {
             return new DoNothingAction();
         }
         //A dormant state Koopa will do nothing.
-        if(!this.isConscious()){
-            if(this.getDisplayChar()=='K'){
-                this.setDisplayChar('D');
-            }
+        if(this.hasCapability(DORMANT)){
             return new DoNothingAction();
         }
         for(Behaviour Behaviour : behaviours.values()) {
@@ -92,5 +90,10 @@ public class Koopa extends Enemy {
                 return action;
         }
         return new DoNothingAction();
+    }
+
+    public void dormant() {
+        this.setDisplayChar('D');
+        this.addCapability(DORMANT);
     }
 }

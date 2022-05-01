@@ -6,6 +6,8 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.grounds.jumpablegrounds.JumpableGround;
 
+import static game.Status.INVINCIBLE;
+
 /**
  * Special Action for jumping high grounds.
  */
@@ -45,6 +47,9 @@ public class JumpAction extends Action {
      */
     @Override
     public String menuDescription(Actor actor) {
+        if (actor.hasCapability(INVINCIBLE)) {
+            return actor + " moves " + direction;
+        }
         return actor + " jumps the " + jumpableGround + " to the " + direction;
     }
 }
