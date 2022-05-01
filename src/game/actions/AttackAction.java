@@ -8,6 +8,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.actors.enemies.Koopa;
+import game.item.consumables.SuperMushroom;
 
 import static game.Status.INVINCIBLE;
 
@@ -47,8 +49,12 @@ public class AttackAction extends Action {
 		Weapon weapon = actor.getWeapon();
 		String result;
 		if (actor.hasCapability(INVINCIBLE)) {
+			if (target instanceof Koopa) {
+				map.locationOf(target).addItem(new SuperMushroom());
+			}
 			map.removeActor(target);
 			result = System.lineSeparator() + target + " is killed.";
+			return result;
 		}
 
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
