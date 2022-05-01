@@ -13,7 +13,7 @@ import static game.Status.*;
 /**
  * Class representing Sapling the second stage of a Tree.
  */
-public class Sapling extends Tree implements JumpableGround {
+public class Sapling extends Tree {
     private int value;
 
     public Sapling(){
@@ -101,7 +101,8 @@ public class Sapling extends Tree implements JumpableGround {
      */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction){
-        return new ActionList(new JumpAction(this, location, direction));
+
+        return super.allowableActions(actor,location,direction);
     }
 
     /**

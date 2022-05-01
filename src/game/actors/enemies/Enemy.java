@@ -7,7 +7,14 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Status;
 import game.actions.AttackAction;
+import game.behaviours.AttackBehaviour;
+import game.behaviours.Behaviour;
+import game.behaviours.FollowBehaviour;
+import game.behaviours.WanderBehaviour;
 import game.reset.Resettable;
+
+import java.util.Map;
+import java.util.TreeMap;
 
 import static game.Status.RESETTABLE;
 
@@ -15,6 +22,8 @@ import static game.Status.RESETTABLE;
  * An abstract Class representing Enemy of the player.
  */
 public abstract class Enemy extends Actor implements Resettable {
+
+    protected Map<Integer, Behaviour> behaviours = new TreeMap<>();
 
     /**
      * Constructor
@@ -24,6 +33,8 @@ public abstract class Enemy extends Actor implements Resettable {
      */
     public Enemy(String name, char displayChar, int hitPoints){
         super(name,displayChar,hitPoints);
+        this.behaviours.put(0,new AttackBehaviour());
+        this.behaviours.put(2, new WanderBehaviour());
     }
 
     /**
@@ -35,6 +46,7 @@ public abstract class Enemy extends Actor implements Resettable {
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        this.behaviours.put(1, new FollowBehaviour(otherActor)); //attack action takes place thus follow behaviour implemented
         ActionList actions = new ActionList();
         // it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
         if(this.getDisplayChar()!='D' && otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) { //attack action will not be added if a dormant state Koopa is found

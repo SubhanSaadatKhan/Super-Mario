@@ -1,8 +1,11 @@
 package game.grounds.jumpablegrounds;
 
+import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.actions.JumpAction;
 import game.reset.Resettable;
 
 import static game.Status.RESETTABLE;
@@ -10,7 +13,7 @@ import static game.Status.RESETTABLE;
 /**
  * An Abstract Class representing the Tree.
  */
-public abstract class Tree extends Ground implements Resettable {
+public abstract class Tree extends Ground implements Resettable,JumpableGround {
     /**
      * Constructor
      * @param treeStage
@@ -43,5 +46,13 @@ public abstract class Tree extends Ground implements Resettable {
     @Override
     public void resetInstance() {
         this.addCapability(RESETTABLE);
+    }
+
+    @Override
+    public abstract String jumped(Actor by, Location at, GameMap in);
+
+    @Override
+    public ActionList allowableActions(Actor actor, Location location, String direction) {
+        return new ActionList(new JumpAction(this, location, direction));
     }
 }

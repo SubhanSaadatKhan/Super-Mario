@@ -14,7 +14,7 @@ import static game.Status.*;
 /**
  * Class representing Sprout the first stage of a Tree.
  */
-public class Sprout extends Tree implements JumpableGround {
+public class Sprout extends Tree{
     private int value;
 
     /**
@@ -105,7 +105,8 @@ public class Sprout extends Tree implements JumpableGround {
      */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction){
-        return new ActionList(new JumpAction(this, location, direction));
+
+        return super.allowableActions(actor,location,direction);
     }
 
     /**

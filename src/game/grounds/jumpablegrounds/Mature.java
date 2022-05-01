@@ -19,7 +19,7 @@ import static game.Status.*;
 /**
  * Class representing Mature the third stage of a Tree.
  */
-public class Mature extends Tree implements JumpableGround {
+public class Mature extends Tree {
     private int value;
     private boolean fertile_soil_around = true;
     private Random random;
@@ -129,7 +129,8 @@ public class Mature extends Tree implements JumpableGround {
      */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction){
-        return new ActionList(new JumpAction(this, location, direction));
+
+        return super.allowableActions(actor,location,direction);
     }
 
     /**

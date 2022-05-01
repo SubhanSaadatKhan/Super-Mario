@@ -25,15 +25,15 @@ import static game.Status.RESETTABLE;
  */
 public class Goomba extends Enemy {
 //	private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
-	private Map<Integer, Behaviour> behaviours = new TreeMap<>();
+//	private Map<Integer, Behaviour> behaviours = new TreeMap<>();
 
 	/**
 	 * Constructor.
 	 */
 	public Goomba() {
 		super("Goomba", 'g', 20);
-		this.behaviours.put(0,new AttackBehaviour());
-		this.behaviours.put(2, new WanderBehaviour());
+//		this.behaviours.put(0,new AttackBehaviour());
+//		this.behaviours.put(2, new WanderBehaviour());
 		this.registerInstance();
 	}
 	/**
@@ -58,7 +58,7 @@ public class Goomba extends Enemy {
 	 */
 	@Override
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-		this.behaviours.put(1, new FollowBehaviour(otherActor)); //attack action takes place thus follow behaviour implemented
+
 		return super.allowableActions(otherActor,direction,map);
 	}
 
