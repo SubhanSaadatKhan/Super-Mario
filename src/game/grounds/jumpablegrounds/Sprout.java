@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actions.JumpAction;
 import game.actors.enemies.Goomba;
 import game.grounds.Dirt;
-import game.item.Coin;
+import game.items.Coin;
 
 import static game.Status.*;
 

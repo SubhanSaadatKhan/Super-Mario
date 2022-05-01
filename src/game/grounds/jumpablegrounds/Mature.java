@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actions.JumpAction;
 import game.actors.enemies.Koopa;
 import game.grounds.Dirt;
-import game.item.Coin;
+import game.items.Coin;
 
 import java.util.ArrayList;
 import java.util.Random;

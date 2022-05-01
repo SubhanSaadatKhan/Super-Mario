@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.grounds.Dirt;
-import game.item.Coin;
+import game.items.Coin;
 import game.actions.JumpAction;
 
 import static game.Status.*;

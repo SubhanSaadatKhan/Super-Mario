@@ -3,7 +3,6 @@ package game;
 import java.util.Arrays;
 import java.util.List;
 
-import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -14,9 +13,6 @@ import game.grounds.Dirt;
 import game.grounds.Floor;
 import game.grounds.jumpablegrounds.Sprout;
 import game.grounds.jumpablegrounds.Wall;
-import game.item.Coin;
-import game.item.consumables.PowerStar;
-import game.item.consumables.SuperMushroom;
 
 /**
  * The main class for the Mario World game.

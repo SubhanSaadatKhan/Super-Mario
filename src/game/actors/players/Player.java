@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
 import game.effects.InvincibleEffect;
-import game.item.Coin;
+import game.items.Coin;
 import game.reset.Resettable;
 
 import static game.Status.*;

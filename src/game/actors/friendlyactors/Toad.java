@@ -7,10 +7,10 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.TradingAction;
-import game.item.Coin;
-import game.item.consumables.PowerStar;
-import game.item.consumables.SuperMushroom;
-import game.item.weapon.Wrench;
+import game.items.Coin;
+import game.items.consumables.PowerStar;
+import game.items.consumables.SuperMushroom;
+import game.items.weapon.Wrench;
 
 public class Toad extends Actor {
 

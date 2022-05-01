@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actors.enemies.Koopa;
-import game.item.consumables.SuperMushroom;
+import game.items.consumables.SuperMushroom;
 
 import static game.Status.*;
 
