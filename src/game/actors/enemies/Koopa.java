@@ -34,7 +34,6 @@ public class Koopa extends Enemy {
         super("Koopa", 'K', 100);
 //        this.behaviours.put(0,new AttackBehaviour());
 //        this.behaviours.put(2, new WanderBehaviour());
-        this.registerInstance();
     }
 
     /**

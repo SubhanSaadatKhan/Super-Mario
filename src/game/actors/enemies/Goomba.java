@@ -34,7 +34,6 @@ public class Goomba extends Enemy {
 		super("Goomba", 'g', 20);
 //		this.behaviours.put(0,new AttackBehaviour());
 //		this.behaviours.put(2, new WanderBehaviour());
-		this.registerInstance();
 	}
 	/**
 	 * Creates a new IntrinsicWeapon
