@@ -10,7 +10,7 @@ import game.actions.TradingAction;
 import game.items.Coin;
 import game.items.consumables.PowerStar;
 import game.items.consumables.SuperMushroom;
-import game.items.weapon.Wrench;
+import game.items.weapons.Wrench;
 
 public class Toad extends Actor {
 
