@@ -15,14 +15,14 @@ import static game.Status.RESETTABLE;
 public class Coin extends Item implements Resettable {
     private int worth;
 
-    public Coin(int worth_$, boolean portable) {
+    public Coin(int worth, boolean portable) {
         super("Coin", '$', portable);
-        this.worth = worth_$;
+        this.worth = worth;
     }
 
-    public Coin(int worth_$) {
+    public Coin(int worth) {
         super("Coin", '$', true);
-        this.worth = worth_$;
+        this.worth = worth;
         this.registerInstance();
     }
 

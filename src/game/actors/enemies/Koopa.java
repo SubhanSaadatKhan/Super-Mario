@@ -96,4 +96,12 @@ public class Koopa extends Enemy {
         this.setDisplayChar('D');
         this.addCapability(DORMANT);
     }
+
+    @Override
+    public String toString() {
+        if (this.hasCapability(DORMANT)) {
+            return name + "'s shell";
+        }
+        return name;
+    }
 }

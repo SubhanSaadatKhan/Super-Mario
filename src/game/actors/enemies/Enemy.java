@@ -49,9 +49,7 @@ public abstract class Enemy extends Actor implements Resettable {
         this.behaviours.put(1, new FollowBehaviour(otherActor)); //attack action takes place thus follow behaviour implemented
         ActionList actions = new ActionList();
         // it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
-        if(this.getDisplayChar()!='D' && otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) { //attack action will not be added if a dormant state Koopa is found
-            actions.add(new AttackAction(this,direction));
-        }
+        actions.add(new AttackAction(this,direction));
         return actions;
     }
 

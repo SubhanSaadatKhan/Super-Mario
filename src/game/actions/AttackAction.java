@@ -62,12 +62,12 @@ public class AttackAction extends Action {
 				if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
 					return actor + " misses " + target + ".";
 				}
-				map.removeActor(target);
 				map.locationOf(target).addItem(new SuperMushroom());
-				result = System.lineSeparator() + target + " is killed.";
+				map.removeActor(target);
+				result = System.lineSeparator() + "Koopa is killed.";
 				return result;
 			}
-			return "Wrench is needed to destroy Koopa's shell.";
+			return actor + " attacks Koopa's shell, nothing happens (Wrench is needed to destroy Koopa's shell.)";
 		}
 
 		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {

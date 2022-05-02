@@ -9,7 +9,7 @@ public class Wrench extends WeaponItem {
      * Constructor.
      */
     public Wrench() {
-        super("Wrench", ' ', 50, "strike", 80);
+        super("Wrench", 'w', 50, "strike", 80);
         this.addCapability(DESTRUCTIVE);
     }
 }

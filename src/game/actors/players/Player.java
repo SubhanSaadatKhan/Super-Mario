@@ -84,8 +84,6 @@ public class Player extends Actor implements Resettable {
 	}
 
 	public String getInfo() {
-		String info = "";
-		info += this + this.printHp();
-		return info;
+		return this + this.printHp();
 	}
 }
