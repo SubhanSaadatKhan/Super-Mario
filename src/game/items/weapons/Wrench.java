@@ -6,7 +6,8 @@ import static game.Status.DESTRUCTIVE;
 
 public class Wrench extends WeaponItem {
     /**
-     * Constructor.
+     * Constructor of Wrench,
+     * initialize the Wrench
      */
     public Wrench() {
         super("Wrench", 'w', 50, "strike", 80);

@@ -18,11 +18,12 @@ public class JumpAction extends Action {
 
     /**
      * Constructor
-     * @param jumpableGround a jumpableGround object.
+     *
+     * @param jumpableGround   a jumpableGround object.
      * @param jumpableLocation location of the jumpable ground.
-     * @param direction which direction to jump.
+     * @param direction        which direction to jump.
      */
-    public JumpAction(JumpableGround jumpableGround,Location jumpableLocation,String direction){
+    public JumpAction(JumpableGround jumpableGround, Location jumpableLocation, String direction) {
         this.jumpableGround = jumpableGround;
         this.jumpableLocation = jumpableLocation;
         this.direction = direction;
@@ -30,18 +31,20 @@ public class JumpAction extends Action {
     }
 
     /**
-     *  Perform the Action.
+     * Perform the Action.
+     *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return string indicating if player succeeds or fails while jumping
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        return jumpableGround.jumped(actor,jumpableLocation,map);
+        return jumpableGround.jumped(actor, jumpableLocation, map);
     }
 
     /**
      * Returns a descriptive string
+     *
      * @param actor The actor performing the action.
      * @return the text we put on the menu
      */

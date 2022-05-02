@@ -2,7 +2,6 @@ package game.grounds.jumpablegrounds;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 
 /**
@@ -16,7 +15,6 @@ public interface JumpableGround {
      * @param by indicate who jumps the jumpable ground
      * @param at to indicate where in the game map the jumpable ground is jumped
      * @param in represents the map where jump is taking place
-     *
      * @return string indicating if player succeeds or fails while jumping
      */
     String jumped(Actor by, Location at, GameMap in);

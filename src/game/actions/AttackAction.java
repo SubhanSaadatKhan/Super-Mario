@@ -18,94 +18,93 @@ import static game.Status.*;
  */
 public class AttackAction extends Action {
 
-	/**
-	 * The Actor that is to be attacked
-	 */
-	protected Actor target;
+    /**
+     * The Actor that is to be attacked
+     */
+    protected Actor target;
 
-	/**
-	 * The direction of incoming attack.
-	 */
-	protected String direction;
+    /**
+     * The direction of incoming attack.
+     */
+    protected String direction;
 
-	/**
-	 * Random number generator
-	 */
-	protected Random rand = new Random();
+    /**
+     * Random number generator
+     */
+    protected Random rand = new Random();
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param target the Actor to attack
-	 */
-	public AttackAction(Actor target, String direction) {
-		this.target = target;
-		this.direction = direction;
-	}
+    /**
+     * Constructor.
+     *
+     * @param target the Actor to attack
+     */
+    public AttackAction(Actor target, String direction) {
+        this.target = target;
+        this.direction = direction;
+    }
 
-	@Override
-	public String execute(Actor actor, GameMap map) {
+    @Override
+    public String execute(Actor actor, GameMap map) {
 
-		Weapon weapon = actor.getWeapon();
-		String result;
-		if (actor.hasCapability(INVINCIBLE)) {
-			if (target instanceof Koopa) {
-				map.locationOf(target).addItem(new SuperMushroom());
-			}
-			map.removeActor(target);
-			result = System.lineSeparator() + target + " is killed.";
-			return result;
-		}
+        Weapon weapon = actor.getWeapon();
+        String result;
+        if (actor.hasCapability(INVINCIBLE)) {
+            if (target instanceof Koopa) {
+                map.locationOf(target).addItem(new SuperMushroom());
+            }
+            map.removeActor(target);
+            result = System.lineSeparator() + target + " is killed.";
+            return result;
+        }
 
-		if (target.getDisplayChar() == 'D' && target.hasCapability(DORMANT)) {
-			if (actor.hasCapability(DESTRUCTIVE)) {
-				if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
-					return actor + " misses " + target + ".";
-				}
-				map.locationOf(target).addItem(new SuperMushroom());
-				map.removeActor(target);
-				result = System.lineSeparator() + "Koopa is killed.";
-				return result;
-			}
-			return actor + " attacks Koopa's shell, nothing happens (Wrench is needed to destroy Koopa's shell.)";
-		}
+        if (target.getDisplayChar() == 'D' && target.hasCapability(DORMANT)) {
+            if (actor.hasCapability(DESTRUCTIVE)) {
+                if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
+                    return actor + " misses " + target + ".";
+                }
+                map.locationOf(target).addItem(new SuperMushroom());
+                map.removeActor(target);
+                result = System.lineSeparator() + "Koopa is killed.";
+                return result;
+            }
+            return actor + " attacks Koopa's shell, nothing happens (Wrench is needed to destroy Koopa's shell.)";
+        }
 
-		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
-			return actor + " misses " + target + ".";
-		}
+        if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
+            return actor + " misses " + target + ".";
+        }
 
-		int damage = weapon.damage();
-		if (target.hasCapability(INVINCIBLE)) {
-			damage = 0;
-		}
+        int damage = weapon.damage();
+        if (target.hasCapability(INVINCIBLE)) {
+            damage = 0;
+        }
 
-		result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-		target.hurt(damage);
-		if (!target.isConscious()) {
-			ActionList dropActions = new ActionList();
-			// drop all items
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction(actor));
-			for (Action drop : dropActions)
-				drop.execute(target, map);
+        result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
+        target.hurt(damage);
+        if (!target.isConscious()) {
+            ActionList dropActions = new ActionList();
+            // drop all items
+            for (Item item : target.getInventory())
+                dropActions.add(item.getDropAction(actor));
+            for (Action drop : dropActions)
+                drop.execute(target, map);
 
-			if(target.getDisplayChar()=='K'){ //do not remove an unconscious Koopa as it will go into dormant state
-				Koopa koopa = (Koopa) target;
-				koopa.dormant();
-			}
-			else{
-				// remove actor
-				map.removeActor(target);
-				result += System.lineSeparator() + target + " is killed.";
-			}
+            if (target.getDisplayChar() == 'K') { //do not remove an unconscious Koopa as it will go into dormant state
+                Koopa koopa = (Koopa) target;
+                koopa.dormant();
+            } else {
+                // remove actor
+                map.removeActor(target);
+                result += System.lineSeparator() + target + " is killed.";
+            }
 
-		}
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	@Override
-	public String menuDescription(Actor actor) {
-		return actor + " attacks " + target + " at " + direction;
-	}
+    @Override
+    public String menuDescription(Actor actor) {
+        return actor + " attacks " + target + " at " + direction;
+    }
 }

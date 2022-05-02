@@ -6,12 +6,19 @@ import edu.monash.fit2099.engine.positions.Location;
 
 import static game.Status.INVINCIBLE;
 
+/**
+ * Invincible effect,
+ * if it is in the player's inventory, the player will have the status INVINCIBLE
+ */
 public class InvincibleEffect extends Item {
-    private int turns;
+
+    private int turns; // The number of turns that the InvincibleEffect can exist
 
     /***
-     * Constructor.
-     *  @param name the name of this Item
+     * Constructor of InvincibleEffect,
+     * it will initialize the InvincibleEffect.
+     *
+     * @param name the name of this Item
      * @param displayChar the character to use to represent this item if it is on the ground
      * @param portable true if and only if the Item can be picked up
      */
@@ -21,6 +28,12 @@ public class InvincibleEffect extends Item {
         turns = 11;
     }
 
+    /**
+     * Reduce 1 turn of InvincibleEffect
+     *
+     * @param currentLocation The location of the actor carrying this Item.
+     * @param actor           The actor carrying this Item.
+     */
     @Override
     public void tick(Location currentLocation, Actor actor) {
         turns -= 1;
@@ -29,6 +42,10 @@ public class InvincibleEffect extends Item {
         }
     }
 
+    /**
+     * @param o The object that will be compared with
+     * @return if the given object is this InvincibleEffect object
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

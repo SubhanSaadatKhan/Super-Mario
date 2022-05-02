@@ -5,7 +5,6 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.Status;
 import game.actions.AttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
@@ -27,19 +26,21 @@ public abstract class Enemy extends Actor implements Resettable {
 
     /**
      * Constructor
-     * @param name Enemy name
+     *
+     * @param name        Enemy name
      * @param displayChar Enemy char
-     * @param hitPoints Enemy HP
+     * @param hitPoints   Enemy HP
      */
-    public Enemy(String name, char displayChar, int hitPoints){
-        super(name,displayChar,hitPoints);
-        this.behaviours.put(0,new AttackBehaviour());
+    public Enemy(String name, char displayChar, int hitPoints) {
+        super(name, displayChar, hitPoints);
+        this.behaviours.put(0, new AttackBehaviour());
         this.behaviours.put(2, new WanderBehaviour());
         this.registerInstance();
     }
 
     /**
      * Adds the Attack action to the actionlist of player
+     *
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
@@ -50,7 +51,7 @@ public abstract class Enemy extends Actor implements Resettable {
         this.behaviours.put(1, new FollowBehaviour(otherActor)); //attack action takes place thus follow behaviour implemented
         ActionList actions = new ActionList();
         // it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
-        actions.add(new AttackAction(this,direction));
+        actions.add(new AttackAction(this, direction));
         return actions;
     }
 
@@ -61,12 +62,14 @@ public abstract class Enemy extends Actor implements Resettable {
      * @param lastAction The Action this Actor took last turn. Can do interesting things in conjunction with Action.getNextAction()
      * @param map        the map containing the Actor
      * @param display    the I/O object to which messages may be written
-     *
      * @return the Action to be performed
      */
     @Override
     public abstract Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display);
 
+    /**
+     * Make the Enemy object resettable
+     */
     @Override
     public void resetInstance() {
         this.addCapability(RESETTABLE);

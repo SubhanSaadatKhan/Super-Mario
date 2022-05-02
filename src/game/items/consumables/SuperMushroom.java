@@ -11,14 +11,24 @@ import java.util.List;
 
 import static game.Status.TALL;
 
+/**
+ * SuperMushroom, a magical item that can be consumed by player,
+ * it will increase the consumer's MaxHp and provide TALL status for the consumer
+ */
 public class SuperMushroom extends Item implements Consumable {
     /***
-     * Constructor.
+     * Constructor for SuperMushroom.
+     * Initialize the attributes that a SuperMushroom has
      */
     public SuperMushroom() {
         super("Super Mushroom", '^', false);
     }
 
+    /**
+     * This method will make the player be able to interact with SuperMushroom
+     *
+     * @return A ConsumeItemAction that allows the player to consume the SuperMushroom
+     */
     @Override
     public List<Action> getAllowableActions() {
         List<Action> actions = new ArrayList<>();
@@ -26,20 +36,29 @@ public class SuperMushroom extends Item implements Consumable {
         return actions;
     }
 
+    /**
+     * This method will let the SuperMushroom be consumed,
+     * the consumer will increase 50 MaxHp and get TALL status after execution
+     *
+     * @param actor           The actor that will do a ConsumeItemAction
+     * @param currentLocation The location that ConsumeItemAction happens
+     */
     @Override
     public void Consumed(Actor actor, Location currentLocation) {
         if (actor.getInventory().contains(this)) {
             actor.increaseMaxHp(50);
             actor.addCapability(TALL);
             actor.removeItemFromInventory(this);
-        }
-        else if (currentLocation.getItems().contains(this)) {
+        } else if (currentLocation.getItems().contains(this)) {
             actor.increaseMaxHp(50);
             actor.addCapability(TALL);
             currentLocation.removeItem(this);
         }
     }
 
+    /**
+     * @return The name of SuperMushroom
+     */
     @Override
     public String toString() {
         return "SuperMushroom";

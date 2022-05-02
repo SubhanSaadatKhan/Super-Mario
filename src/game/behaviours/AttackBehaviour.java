@@ -15,11 +15,10 @@ import static game.Status.TALL;
 public class AttackBehaviour implements Behaviour {
 
     /**
-     *  Checks all possible exits if target actor found in any of those exits an attack action will take place.
+     * Checks all possible exits if target actor found in any of those exits an attack action will take place.
      *
      * @param actor the Actor acting
-     * @param map the GameMap containing the Actor
-     *
+     * @param map   the GameMap containing the Actor
      * @return action to be carried
      */
     @Override
@@ -30,12 +29,11 @@ public class AttackBehaviour implements Behaviour {
             Location destination = exit.getDestination();
             String direction = exit.getName();
             Actor actorPlayer = destination.getActor();
-            if(actorPlayer!=null){
+            if (actorPlayer != null) {
                 char ch = actorPlayer.getDisplayChar();
                 if (ch == 'm') {
                     return new AttackAction(actorPlayer, direction);
-                }
-                else if (ch == 'M') {
+                } else if (ch == 'M') {
                     actorPlayer.removeCapability(TALL);
                     return new AttackAction(actorPlayer, direction);
                 }

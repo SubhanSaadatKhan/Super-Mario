@@ -1,6 +1,5 @@
 package game.reset;
 
-import game.reset.ResetManager;
 
 public interface Resettable {
     /**
@@ -13,7 +12,7 @@ public interface Resettable {
      * a default interface method that register current instance to the Singleton manager.
      * It allows corresponding class uses to be affected by global reset
      */
-    default void registerInstance(){
+    default void registerInstance() {
         ResetManager.getInstance().appendResetInstance(this);
     }
 }
