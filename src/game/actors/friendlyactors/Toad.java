@@ -11,7 +11,7 @@ import game.items.Coin;
 import game.items.consumables.PowerStar;
 import game.items.consumables.SuperMushroom;
 import game.items.weapons.Wrench;
-
+//final
 /**
  * Toad, a friendly actor who can sell items to the player.
  */

@@ -8,7 +8,7 @@ import game.actions.PickUpCoinAction;
 import game.reset.Resettable;
 
 import static game.Status.RESETTABLE;
-
+//final
 /**
  * A class representing coin,
  * players can pick up coins on the map and trade with Toad using coins

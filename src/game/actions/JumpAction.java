@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.grounds.jumpablegrounds.JumpableGround;
 
 import static game.Status.INVINCIBLE;
-
+//final
 /**
  * Special Action for jumping high grounds.
  */

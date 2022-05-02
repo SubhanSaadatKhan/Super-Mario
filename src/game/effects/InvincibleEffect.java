@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
 
 import static game.Status.INVINCIBLE;
-
+//final
 /**
  * Invincible effect,
  * if it is in the player's inventory, the player will have the status INVINCIBLE

@@ -11,7 +11,7 @@ import game.items.Coin;
 
 import static game.Status.INVINCIBLE;
 import static game.Status.TALL;
-
+//final
 /**
  * Class representing Solid Wall.
  */

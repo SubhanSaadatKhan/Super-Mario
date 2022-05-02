@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actions.AttackAction;
 
 import static game.Status.TALL;
-
+//final
 /**
  * A class that carries an attack action when the target actor is in his surroundings.
  */

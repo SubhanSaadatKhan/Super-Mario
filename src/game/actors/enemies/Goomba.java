@@ -13,7 +13,7 @@ import game.behaviours.Behaviour;
 
 
 import static game.Status.RESETTABLE;
-
+//final
 /**
  * Class representing Goomba a little fungus guy.
  */

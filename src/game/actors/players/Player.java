@@ -14,7 +14,7 @@ import game.items.Coin;
 import game.reset.Resettable;
 
 import static game.Status.*;
-
+//final
 /**
  * Class representing the Player.
  */

@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import static game.Status.RESETTABLE;
-
+//final
 /**
  * An abstract Class representing Enemy of the player.
  */

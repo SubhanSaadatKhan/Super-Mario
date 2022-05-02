@@ -9,7 +9,7 @@ import game.actions.JumpAction;
 import game.reset.Resettable;
 
 import static game.Status.RESETTABLE;
-
+//final
 /**
  * An Abstract Class representing the Tree.
  */

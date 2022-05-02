@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.players.Player;
 import game.items.Coin;
 import game.items.consumables.PowerStar;
-
+//final
 /**
  * Action for trading with Toad
  */

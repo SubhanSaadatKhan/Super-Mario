@@ -9,7 +9,7 @@ import game.effects.InvincibleEffect;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//final
 /**
  * PowerStar, a magical item that can be consumed by player,
  * it will heal the consumer and provide INVINCIBLE status for the consumer

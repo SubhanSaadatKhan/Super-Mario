@@ -13,6 +13,7 @@ import game.items.consumables.SuperMushroom;
 
 import static game.Status.*;
 
+//final
 /**
  * Special Action for attacking other Actors.
  */

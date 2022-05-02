@@ -12,7 +12,7 @@ import game.behaviours.Behaviour;
 
 import static game.Status.DORMANT;
 import static game.Status.RESETTABLE;
-
+//final
 /**
  * Class representing Koopa a little turtle.
  */
