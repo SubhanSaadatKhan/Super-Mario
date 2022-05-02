@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Status;
+import game.actions.ResetAction;
 import game.effects.InvincibleEffect;
 import game.items.Coin;
 import game.reset.Resettable;
@@ -49,6 +50,9 @@ public class Player extends Actor implements Resettable {
 			this.heal(this.getMaxHp());
 			this.removeCapability(RESETTABLE);
 //			return menu.showMenu(this, actions, display);
+		}
+		if (ResetAction.available()) {
+			actions.add(new ResetAction());
 		}
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)

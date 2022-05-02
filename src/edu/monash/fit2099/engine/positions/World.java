@@ -118,9 +118,7 @@ public class World {
 		GameMap map = here.map();
 
 		ActionList actions = new ActionList();
-		if (ResetAction.available()) {
-			actions.add(new ResetAction());
-		}
+
 		for (Item item : actor.getInventory()) {
 			actions.add(item.getAllowableActions());
 			// Game rule. If you're carrying it, you can drop it.
