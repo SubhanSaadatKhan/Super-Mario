@@ -11,6 +11,7 @@ import game.actors.friendlyactors.Toad;
 import game.actors.players.Player;
 import game.grounds.Dirt;
 import game.grounds.Floor;
+import game.grounds.Lava;
 import game.grounds.jumpablegrounds.Sprout;
 import game.grounds.jumpablegrounds.Wall;
 
@@ -46,8 +47,27 @@ public class Application {
                 "......................................................#.........................",
                 ".......................................................##.......................");
 
+        FancyGroundFactory groundFactory1 = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Sprout(), new Lava());
+
+        List<String> map1 = Arrays.asList(
+                "....+....L.......................L...............",
+                "............+............+.................._....",
+                "........L...........##..................L..._....",
+                ".................___.............................",
+                ".......................#.......##..............#.",
+                "................+......................LL........",
+                ".....#...L......+.._........__....#........L.....",
+                ".................#___##........___...............",
+                "..+........................L............+......._",
+                ".........+........#____#..........++............+",
+                "___....................................+#_____##_",
+                "............_#___..........L...........+.........");
+
         GameMap gameMap = new GameMap(groundFactory, map);
         world.addGameMap(gameMap);
+
+        GameMap gameMap1 = new GameMap(groundFactory1, map1);
+        world.addGameMap(gameMap1);
 
         Player mario = new Player("Player", 'm', 100);
         world.addPlayer(mario, gameMap.at(42, 10));
