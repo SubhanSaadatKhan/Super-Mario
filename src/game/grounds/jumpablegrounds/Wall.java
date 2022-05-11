@@ -29,7 +29,7 @@ public class Wall extends Ground implements JumpableGround {
      */
     @Override
     public boolean canActorEnter(Actor actor) {
-        if (actor.getDisplayChar() == 'm') { //player cannot enter tree without jumping
+        if (actor.getDisplayChar() == 'm') { //player cannot enter wall without jumping
             return false;
         }
         return true;
@@ -81,7 +81,10 @@ public class Wall extends Ground implements JumpableGround {
      */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
-        return new ActionList(new JumpAction(this, location, direction));
+        if (direction.equals("") == false){
+            return new ActionList(new JumpAction(this, location, direction));
+        }
+        return super.allowableActions(actor,location,direction);
     }
 
     /**

@@ -59,6 +59,9 @@ public abstract class Tree extends Ground implements Resettable, JumpableGround 
 
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
-        return new ActionList(new JumpAction(this, location, direction));
+        if (direction.equals("") == false){
+            return new ActionList(new JumpAction(this, location, direction));
+        }
+        return super.allowableActions(actor,location,direction);
     }
 }
