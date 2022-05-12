@@ -1,4 +1,4 @@
-package game.grounds.jumpablegrounds;
+package game.grounds.jumpablegrounds.teleportablegrounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
@@ -7,13 +7,18 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.JumpAction;
+import game.actions.TeleportAction;
 import game.grounds.jumpablegrounds.JumpableGround;
 import game.grounds.jumpablegrounds.Wall;
 
 public class WarpPipe extends Ground implements JumpableGround {
 
-    public WarpPipe(){
+    GameMap map1,map2;
+
+    public WarpPipe(GameMap initDefaultMap,GameMap initNewMap){
         super('C');
+        map1 = initDefaultMap;
+        map2 = initNewMap;
     }
 
     /**
@@ -49,7 +54,13 @@ public class WarpPipe extends Ground implements JumpableGround {
         if (direction.equals("") == false){
             return new ActionList(new JumpAction(this, location, direction));
         }
-        return super.allowableActions(actor,location,direction);
+        else{
+            if (location.map().equals(map1)){
+                return new ActionList(new TeleportAction(map1,map2,location,"to Lava Map"));
+            }
+            return new ActionList(new TeleportAction(map1,map2,location,"to Game Map"));
+
+        }
 
     }
 

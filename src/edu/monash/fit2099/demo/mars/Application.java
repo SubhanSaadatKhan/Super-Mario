@@ -27,8 +27,7 @@ public class Application {
     public static void main(String[] args) {
         World world = new World(new Display());
 
-        FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(),
-                new Crater());
+        FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(), new Crater());
         GameMap gameMap;
 
         List<String> map = Arrays.asList(
