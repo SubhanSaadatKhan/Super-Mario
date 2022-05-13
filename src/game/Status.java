@@ -11,5 +11,6 @@ public enum Status {
     RESETTABLE, // the status of actors or items to be reset
     DORMANT, // the status of Koopa who is defeated
     DESTRUCTIVE, // the status that can destroy Koopa's shell
-    INTERACTWITHPRINCESS //the status that can start interaction with Princess
+    INTERACT_WITH_PRINCESS, //the status that can start interaction with Princess
+    SPACE_SUIT //the status that can make player teleport
 }

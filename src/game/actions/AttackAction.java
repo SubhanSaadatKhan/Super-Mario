@@ -95,11 +95,17 @@ public class AttackAction extends Action {
                 Koopa koopa = (Koopa) target;
                 koopa.dormant();
             }
-            if (target.getDisplayChar() == 'B') { //do not remove an unconscious Koopa as it will go into dormant state
+            else if (target.getDisplayChar() == 'B') { //do not remove an unconscious Koopa as it will go into dormant state
                 map.locationOf(target).addItem(new Key());
                 // remove actor
                 map.removeActor(target);
                 result += System.lineSeparator() + target + " is killed, Key dropped";
+            }
+            else if (target.getDisplayChar() == 'Y') { //do not remove an unconscious Koopa as it will go into dormant state
+                actor.addCapability(SPACE_SUIT);
+                // remove actor
+                map.removeActor(target);
+                result += System.lineSeparator() + target + " is killed.";
             }
             else {
                 // remove actor

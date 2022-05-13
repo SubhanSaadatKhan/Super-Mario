@@ -5,7 +5,8 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.items.PickUpItemAction;
 import game.actions.PickUpCoinAction;
 
-import static game.Status.INTERACTWITHPRINCESS;
+//import static game.Status.INTERACTWITHPRINCESS;
+import static game.Status.INTERACT_WITH_PRINCESS;
 
 public class Key extends Item {
 
@@ -21,7 +22,7 @@ public class Key extends Item {
      */
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
-        actor.addCapability(INTERACTWITHPRINCESS);
+        actor.addCapability(INTERACT_WITH_PRINCESS);
         return super.getPickUpAction(actor);
     }
 

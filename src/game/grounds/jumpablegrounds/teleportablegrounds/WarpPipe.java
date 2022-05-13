@@ -8,17 +8,21 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.JumpAction;
 import game.actions.TeleportAction;
+import game.actors.enemies.PiranhaPlant;
 import game.grounds.jumpablegrounds.JumpableGround;
 import game.grounds.jumpablegrounds.Wall;
 
-public class WarpPipe extends Ground implements JumpableGround {
+import static game.Status.SPACE_SUIT;
 
+public class WarpPipe extends Ground implements JumpableGround {
+    boolean spawnPiranha;
     GameMap map1,map2;
 
     public WarpPipe(GameMap initDefaultMap,GameMap initNewMap){
         super('C');
         map1 = initDefaultMap;
         map2 = initNewMap;
+        spawnPiranha = false;
     }
 
     /**
@@ -33,6 +37,14 @@ public class WarpPipe extends Ground implements JumpableGround {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void tick(Location location) {
+        if (!spawnPiranha && !location.map().equals(map2)){
+            location.addActor(new PiranhaPlant());
+            spawnPiranha = true;
+        }
     }
 
     @Override
@@ -51,17 +63,20 @@ public class WarpPipe extends Ground implements JumpableGround {
      */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
-        if (direction.equals("") == false){
-            return new ActionList(new JumpAction(this, location, direction));
+        if ((actor.hasCapability(SPACE_SUIT))){
+            if (!direction.equals("")){
+                return new ActionList(new JumpAction(this, location, direction));
+            }
+            else {
+                if (location.map().equals(map1)){
+                    return new ActionList(new TeleportAction(map1,map2,location,"to Lava Map"));
+                }
+                return new ActionList(new TeleportAction(map1,map2,location,"to Game Map"));
+            }
         }
         else{
-            if (location.map().equals(map1)){
-                return new ActionList(new TeleportAction(map1,map2,location,"to Lava Map"));
-            }
-            return new ActionList(new TeleportAction(map1,map2,location,"to Game Map"));
-
+            return super.allowableActions(actor,location,direction);
         }
-
     }
 
     /**

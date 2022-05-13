@@ -12,8 +12,7 @@ import game.items.consumables.PowerStar;
 import game.items.consumables.SuperMushroom;
 import game.items.weapons.Wrench;
 
-import static game.Status.INTERACTWITHPRINCESS;
-import static game.Status.RESETTABLE;
+import static game.Status.*;
 
 public class PrincessPeach extends Actor {
 
@@ -25,7 +24,7 @@ public class PrincessPeach extends Actor {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
 
-        if (otherActor.hasCapability(INTERACTWITHPRINCESS)){
+        if (otherActor.hasCapability(INTERACT_WITH_PRINCESS)){
             //TODO
 //            actions.add(new SpeakingAction()));
         }
