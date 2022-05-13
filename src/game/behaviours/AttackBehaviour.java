@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.AttackAction;
+import game.items.Fire;
 
 import static game.Status.TALL;
 //final
@@ -32,6 +33,9 @@ public class AttackBehaviour implements Behaviour {
             if (actorPlayer != null) {
                 char ch = actorPlayer.getDisplayChar();
                 if (ch == 'm') {
+                    if (actor.getDisplayChar()=='B'){
+                        destination.addItem(new Fire());
+                    }
                     return new AttackAction(actorPlayer, direction);
                 } else if (ch == 'M') {
                     actorPlayer.removeCapability(TALL);

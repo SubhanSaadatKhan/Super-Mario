@@ -9,6 +9,8 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.World;
+import game.actors.enemies.Bowser;
+import game.actors.friendlyactors.PrincessPeach;
 import game.actors.friendlyactors.Toad;
 import game.actors.players.Player;
 import game.grounds.Dirt;
@@ -113,7 +115,7 @@ public class Application {
 
 
         //placing some lava randomly all over the map
-        for(int i=0;i<12;i++){
+        for(int i=0;i<5;i++){
             Lava lava = new Lava();
             //gives a random value from 0-48
             int x_random = rand.nextInt(48);
@@ -129,6 +131,8 @@ public class Application {
         }
 
         lavaMap.at(0,0).setGround(new WarpPipe(gameMap,lavaMap));
+        lavaMap.at(3,4).addActor(new Bowser());
+        lavaMap.at(3,6).addActor(new PrincessPeach());
 
         Player mario = new Player("Player", 'm', 100);
         world.addPlayer(mario, gameMap.at(42, 10));

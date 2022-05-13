@@ -15,6 +15,7 @@ import game.reset.Resettable;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static game.Status.HOSTILE_TO_ENEMY;
 import static game.Status.RESETTABLE;
 //final
 /**
@@ -50,8 +51,9 @@ public abstract class Enemy extends Actor implements Resettable {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         this.behaviours.put(1, new FollowBehaviour(otherActor)); //attack action takes place thus follow behaviour implemented
         ActionList actions = new ActionList();
-        // it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
-        actions.add(new AttackAction(this, direction));
+        if(otherActor.hasCapability(HOSTILE_TO_ENEMY)) {
+            actions.add(new AttackAction(this,direction));
+        }
         return actions;
     }
 

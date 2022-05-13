@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actors.enemies.Koopa;
+import game.items.Key;
 import game.items.consumables.SuperMushroom;
 
 import static game.Status.*;
@@ -93,7 +94,14 @@ public class AttackAction extends Action {
             if (target.getDisplayChar() == 'K') { //do not remove an unconscious Koopa as it will go into dormant state
                 Koopa koopa = (Koopa) target;
                 koopa.dormant();
-            } else {
+            }
+            if (target.getDisplayChar() == 'B') { //do not remove an unconscious Koopa as it will go into dormant state
+                map.locationOf(target).addItem(new Key());
+                // remove actor
+                map.removeActor(target);
+                result += System.lineSeparator() + target + " is killed, Key dropped";
+            }
+            else {
                 // remove actor
                 map.removeActor(target);
                 result += System.lineSeparator() + target + " is killed.";

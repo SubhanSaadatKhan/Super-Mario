@@ -10,5 +10,6 @@ public enum Status {
     INVINCIBLE, // the status of the player who consumed Power Star
     RESETTABLE, // the status of actors or items to be reset
     DORMANT, // the status of Koopa who is defeated
-    DESTRUCTIVE // the status that can destroy Koopa's shell
+    DESTRUCTIVE, // the status that can destroy Koopa's shell
+    INTERACTWITHPRINCESS //the status that can start interaction with Princess
 }
