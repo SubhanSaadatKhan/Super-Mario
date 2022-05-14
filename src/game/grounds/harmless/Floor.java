@@ -1,4 +1,4 @@
-package game.grounds;
+package game.grounds.harmless;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;

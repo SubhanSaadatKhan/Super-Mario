@@ -10,6 +10,8 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Status;
 import game.behaviours.Behaviour;
+import game.behaviours.FollowBehaviour;
+import game.behaviours.WanderBehaviour;
 
 
 import static game.Status.RESETTABLE;
@@ -26,8 +28,7 @@ public class Goomba extends Enemy {
      */
     public Goomba() {
         super("Goomba", 'g', 20);
-//		this.behaviours.put(0,new AttackBehaviour());
-//		this.behaviours.put(2, new WanderBehaviour());
+        this.behaviours.put(2, new WanderBehaviour());
     }
 
     /**
@@ -52,7 +53,7 @@ public class Goomba extends Enemy {
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-
+        this.behaviours.put(0, new FollowBehaviour(otherActor)); //attack action takes place thus follow behaviour implemented
         return super.allowableActions(otherActor, direction, map);
     }
 
@@ -77,12 +78,7 @@ public class Goomba extends Enemy {
             map.removeActor(this);
             return new DoNothingAction();
         }
-        for (Behaviour Behaviour : behaviours.values()) {
-            Action action = Behaviour.getAction(this, map);
-            if (action != null)
-                return action;
-        }
-        return new DoNothingAction();
+        return super.playTurn(actions,lastAction,map,display);
     }
 
 }

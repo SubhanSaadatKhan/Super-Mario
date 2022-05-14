@@ -1,12 +1,12 @@
-package game.grounds.jumpablegrounds;
+package game.grounds.harmless.jumpablegrounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.enemies.Goomba;
-import game.grounds.Dirt;
-import game.items.Coin;
+import game.grounds.harmless.Dirt;
+import game.items.portable.Coin;
 
 import static game.Status.*;
 //final

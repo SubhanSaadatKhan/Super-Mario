@@ -1,4 +1,4 @@
-package game.items;
+package game.items.portable;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
@@ -8,8 +8,14 @@ import game.actions.PickUpCoinAction;
 //import static game.Status.INTERACTWITHPRINCESS;
 import static game.Status.INTERACT_WITH_PRINCESS;
 
+/**
+ * A class representing Key
+ */
 public class Key extends Item {
 
+    /**
+     * Constructor
+     */
     public Key() {
         super("Key", 'k', true);
     }
@@ -25,7 +31,11 @@ public class Key extends Item {
         actor.addCapability(INTERACT_WITH_PRINCESS);
         return super.getPickUpAction(actor);
     }
-
+    /**
+     * To display the name of item
+     *
+     * @return String representing the class name
+     */
     @Override
     public String toString() {
         return "Key";

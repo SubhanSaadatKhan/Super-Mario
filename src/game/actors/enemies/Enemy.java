@@ -2,6 +2,7 @@ package game.actors.enemies;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -15,8 +16,7 @@ import game.reset.Resettable;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static game.Status.HOSTILE_TO_ENEMY;
-import static game.Status.RESETTABLE;
+import static game.Status.*;
 //final
 /**
  * An abstract Class representing Enemy of the player.
@@ -34,8 +34,7 @@ public abstract class Enemy extends Actor implements Resettable {
      */
     public Enemy(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-        this.behaviours.put(0, new AttackBehaviour());
-        this.behaviours.put(2, new WanderBehaviour());
+        this.behaviours.put(1, new AttackBehaviour());
         this.registerInstance();
     }
 
@@ -49,9 +48,11 @@ public abstract class Enemy extends Actor implements Resettable {
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        this.behaviours.put(1, new FollowBehaviour(otherActor)); //attack action takes place thus follow behaviour implemented
         ActionList actions = new ActionList();
         if(otherActor.hasCapability(HOSTILE_TO_ENEMY) && this.getDisplayChar()!='D') {
+            actions.add(new AttackAction(this,direction));
+        }
+        else if (this.getDisplayChar()=='D' && otherActor.hasCapability(DESTRUCTIVE)){
             actions.add(new AttackAction(this,direction));
         }
         return actions;
@@ -67,7 +68,14 @@ public abstract class Enemy extends Actor implements Resettable {
      * @return the Action to be performed
      */
     @Override
-    public abstract Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display);
+    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display){
+        for (Behaviour Behaviour : behaviours.values()) {
+            Action action = Behaviour.getAction(this, map);
+            if (action != null)
+                return action;
+        }
+        return new DoNothingAction();
+    }
 
     /**
      * Make the Enemy object resettable

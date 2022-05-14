@@ -10,15 +10,15 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.enemies.Bowser;
-import game.actors.friendlyactors.PrincessPeach;
-import game.actors.friendlyactors.Toad;
+import game.actors.friends.PrincessPeach;
+import game.actors.friends.Toad;
 import game.actors.players.Player;
-import game.grounds.Dirt;
-import game.grounds.Floor;
-import game.grounds.Lava;
-import game.grounds.jumpablegrounds.Sprout;
-import game.grounds.jumpablegrounds.Wall;
-import game.grounds.jumpablegrounds.teleportablegrounds.WarpPipe;
+import game.grounds.harmless.Dirt;
+import game.grounds.harmless.Floor;
+import game.grounds.harmful.Lava;
+import game.grounds.harmless.jumpablegrounds.Sprout;
+import game.grounds.harmless.jumpablegrounds.Wall;
+import game.grounds.harmless.jumpablegrounds.teleportablegrounds.WarpPipe;
 
 /**
  * The main class for the Mario World game.
@@ -78,9 +78,8 @@ public class Application {
 
         Random rand = new Random();
 
-        //placing some sprouts randomly all over the map2
-
-        for(int i=0;i<35;i++){
+        //placing some sprouts randomly all over the GameMap
+        for(int i=0;i<25;i++){
             Sprout sprout = new Sprout();
             //gives a random value from 0-80
             int x_random = rand.nextInt(80);
@@ -95,7 +94,7 @@ public class Application {
             }
         }
 
-        //placing some warp pipes randomly all over the map
+        //placing some Warp Pipes randomly all over the GameMap
         for(int i=0;i<15;i++){
             WarpPipe warpPipe = new WarpPipe(gameMap,lavaMap);
             //gives a random value from 0-80
@@ -104,37 +103,30 @@ public class Application {
             int y_random = rand.nextInt(18);
 
             Ground ground = gameMap.at(x_random,y_random).getGround();
-
-            //checks if ground fertile
             if (ground.getDisplayChar()=='.'){
                 gameMap.at(x_random,y_random).setGround(warpPipe);
             }
         }
 
-
-
-
-        //placing some lava randomly all over the map
+        //placing some lava randomly all over the LavaMap
         for(int i=0;i<5;i++){
             Lava lava = new Lava();
             //gives a random value from 0-48
             int x_random = rand.nextInt(48);
             //gives a random value from 0-11
             int y_random = rand.nextInt(11);
+            lavaMap.at(x_random,y_random).setGround(lava);
 
-            Ground ground = lavaMap.at(x_random,y_random).getGround();
-
-            //checks if ground fertile
-            if (ground.getDisplayChar()=='.'){
-                lavaMap.at(x_random,y_random).setGround(lava);
-            }
         }
 
+        //placing a Warp Pipe in the top left corner of LavaMap
         lavaMap.at(0,0).setGround(new WarpPipe(gameMap,lavaMap));
+
+        //todo still understand
         lavaMap.at(3,4).addActor(new Bowser());
         lavaMap.at(3,6).addActor(new PrincessPeach());
 
-        Player mario = new Player("Player", 'm', 100);
+        Player mario = new Player("Player", 'm', 1000000);
         world.addPlayer(mario, gameMap.at(42, 10));
 
         gameMap.at(44, 11).addActor(new Toad());

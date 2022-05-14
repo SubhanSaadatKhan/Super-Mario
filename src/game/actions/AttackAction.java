@@ -8,9 +8,10 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
-import game.actors.enemies.FlyingKoopa;
-import game.actors.enemies.Koopa;
-import game.items.Key;
+import game.actors.enemies.koopas.BaseKoopa;
+import game.actors.enemies.koopas.FlyingKoopa;
+import game.actors.enemies.koopas.NormalKoopa;
+import game.items.portable.Key;
 import game.items.consumables.SuperMushroom;
 
 import static game.Status.*;
@@ -52,7 +53,7 @@ public class AttackAction extends Action {
         Weapon weapon = actor.getWeapon();
         String result;
         if (actor.hasCapability(INVINCIBLE)) {
-            if (target instanceof Koopa) {
+            if (target instanceof NormalKoopa) {
                 map.locationOf(target).addItem(new SuperMushroom());
             }
             map.removeActor(target);
@@ -93,11 +94,11 @@ public class AttackAction extends Action {
                 drop.execute(target, map);
 
             if (target.getDisplayChar() == 'K') { //do not remove an unconscious Koopa as it will go into dormant state
-                Koopa koopa = (Koopa) target;
+                BaseKoopa koopa = (NormalKoopa) target;
                 koopa.dormant();
             }
             else if (target.getDisplayChar() == 'F') { //do not remove an unconscious Koopa as it will go into dormant state
-                FlyingKoopa flyingKoopa = (FlyingKoopa) target;
+                BaseKoopa flyingKoopa = (FlyingKoopa) target;
                 flyingKoopa.dormant();
             }
             else if (target.getDisplayChar() == 'B') { //do not remove an unconscious Koopa as it will go into dormant state

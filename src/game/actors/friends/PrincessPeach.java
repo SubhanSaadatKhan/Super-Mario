@@ -1,4 +1,4 @@
-package game.actors.enemies;
+package game.actors.friends;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -6,38 +6,20 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.actions.AttackAction;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.Behaviour;
-import game.behaviours.FollowBehaviour;
 
-import java.util.Map;
-import java.util.TreeMap;
-
-import static game.Status.HOSTILE_TO_ENEMY;
+import static game.Status.*;
 
 /**
- * A class representing Piranha Plant
+ * A class representing Princess Peach
  */
-public class PiranhaPlant extends Enemy {
+public class PrincessPeach extends Friend {
     /**
      * Constructor
      */
-    public PiranhaPlant(){
-        super("Piranha Plant", 'Y', 150);
-        this.behaviours.put(0, new AttackBehaviour());
+    public PrincessPeach(){
+        super("Princess Peach",'P',1);
     }
 
-    /**
-     * Creates a new IntrinsicWeapon
-     *
-     * @return
-     */
-    @Override
-    protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(90, "chomps");
-    }
     /**
      * Adds the Attack action to the actionlist of player
      *
@@ -48,7 +30,14 @@ public class PiranhaPlant extends Enemy {
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-        return super.allowableActions(otherActor, direction, map);
+        ActionList actions = new ActionList();
+
+        if (otherActor.hasCapability(INTERACT_WITH_PRINCESS)){
+            //TODO
+//            actions.add(new SpeakingAction()));
+        }
+
+        return actions;
     }
     /**
      * Select and return an action to perform on the current turn.
@@ -62,6 +51,5 @@ public class PiranhaPlant extends Enemy {
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         return super.playTurn(actions,lastAction,map,display);
-
     }
 }

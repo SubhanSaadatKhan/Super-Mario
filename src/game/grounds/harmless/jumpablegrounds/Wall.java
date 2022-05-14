@@ -1,13 +1,11 @@
-package game.grounds.jumpablegrounds;
+package game.grounds.harmless.jumpablegrounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
-import game.actions.JumpAction;
-import game.grounds.Dirt;
-import game.items.Coin;
+import game.grounds.harmless.Dirt;
+import game.items.portable.Coin;
 
 import static game.Status.INVINCIBLE;
 import static game.Status.TALL;
@@ -15,7 +13,7 @@ import static game.Status.TALL;
 /**
  * Class representing Solid Wall.
  */
-public class Wall extends Ground implements JumpableGround {
+public class Wall extends HighGround {
 
     public Wall() {
         super('#');
@@ -29,11 +27,7 @@ public class Wall extends Ground implements JumpableGround {
      */
     @Override
     public boolean canActorEnter(Actor actor) {
-        char show = actor.getDisplayChar();
-        if (show == 'm' || show == 'g' || show == 'K') { //player cannot enter wall without jumping
-            return false;
-        }
-        return true;
+        return super.canActorEnter(actor);
     }
 
     @Override
@@ -82,9 +76,6 @@ public class Wall extends Ground implements JumpableGround {
      */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
-        if (direction.equals("") == false){
-            return new ActionList(new JumpAction(this, location, direction));
-        }
         return super.allowableActions(actor,location,direction);
     }
 

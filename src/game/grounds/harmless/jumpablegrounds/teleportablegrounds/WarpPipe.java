@@ -1,23 +1,28 @@
-package game.grounds.jumpablegrounds.teleportablegrounds;
+package game.grounds.harmless.jumpablegrounds.teleportablegrounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.JumpAction;
 import game.actions.TeleportAction;
 import game.actors.enemies.PiranhaPlant;
-import game.grounds.jumpablegrounds.JumpableGround;
-import game.grounds.jumpablegrounds.Wall;
+import game.grounds.harmless.jumpablegrounds.JumpableGround;
 
 import static game.Status.SPACE_SUIT;
-
+/**
+ * Class representing Warp Pipe
+ */
 public class WarpPipe extends Ground implements JumpableGround {
     boolean spawnPiranha;
-    GameMap map1,map2;
+    GameMap map1,map2; //stores both maps
 
+    /**
+     * Constructor
+     * @param initDefaultMap
+     * @param initNewMap
+     */
     public WarpPipe(GameMap initDefaultMap,GameMap initNewMap){
         super('C');
         map1 = initDefaultMap;
@@ -40,6 +45,10 @@ public class WarpPipe extends Ground implements JumpableGround {
         return true;
     }
 
+    /**
+     * Spawn Piranha Plant
+     * @param location The location of the Ground
+     */
     @Override
     public void tick(Location location) {
         if (!spawnPiranha && !location.map().equals(map2)){
@@ -48,6 +57,13 @@ public class WarpPipe extends Ground implements JumpableGround {
         }
     }
 
+    /**
+     * Makes the player jump onto Warp pipe
+     * @param by indicate who jumps the jumpable ground
+     * @param at to indicate where in the game map the jumpable ground is jumped
+     * @param in represents the map where jump is taking place
+     * @return
+     */
     @Override
     public String jumped(Actor by, Location at, GameMap in) {
         in.moveActor(by, at);
@@ -55,7 +71,7 @@ public class WarpPipe extends Ground implements JumpableGround {
     }
 
     /**
-     * Adds the jump action to the action list of player
+     * Adds the jump action and teleport action to the action list of player
      *
      * @param actor     the Actor acting
      * @param location  the current Location
@@ -64,15 +80,15 @@ public class WarpPipe extends Ground implements JumpableGround {
      */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
-        if ((actor.hasCapability(SPACE_SUIT))){
-            if (!direction.equals("")){
-                return new ActionList(new JumpAction(this, location, direction));
+        if ((actor.hasCapability(SPACE_SUIT))){ //actions with warp pipe are only visible when player kills piranha plant
+            if (!direction.equals("")){ //if player not standing upon warp pipe
+                return new ActionList(new JumpAction(this, location, direction)); //jump action
             }
-            else {
-                if (location.map().equals(map1)){
-                    return new ActionList(new TeleportAction(map1,map2,location,"to Lava Map"));
+            else { //if player standing onto warp pipe
+                if (location.map().equals(map1)){ //checks which map player currently on
+                    return new ActionList(new TeleportAction(map1,map2,location,"to Lava Map")); //teleport action
                 }
-                return new ActionList(new TeleportAction(map1,map2,location,"to Game Map"));
+                return new ActionList(new TeleportAction(map1,map2,location,"to Game Map")); //teleport action
             }
         }
         else{

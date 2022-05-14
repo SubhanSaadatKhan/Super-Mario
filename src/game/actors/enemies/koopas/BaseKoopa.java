@@ -1,4 +1,4 @@
-package game.actors.enemies;
+package game.actors.enemies.koopas;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -8,25 +8,23 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Status;
-import game.behaviours.Behaviour;
+import game.actors.enemies.Enemy;
+import game.behaviours.FollowBehaviour;
+import game.behaviours.WanderBehaviour;
 
 import static game.Status.DORMANT;
 import static game.Status.RESETTABLE;
-//final
+
 /**
- * Class representing Koopa a little turtle.
+ * A Base Class for Koopa
  */
-public class Koopa extends Enemy {
-
-//    private Map<Integer, Behaviour> behaviours = new TreeMap<>();
-
+public abstract class BaseKoopa extends Enemy {
     /**
      * Constructor.
      */
-    public Koopa() {
-        super("Koopa", 'K', 100);
-//        this.behaviours.put(0,new AttackBehaviour());
-//        this.behaviours.put(2, new WanderBehaviour());
+    public BaseKoopa(String name, char displayChar, int hitPoints) {
+        super(name, displayChar, hitPoints);
+        this.behaviours.put(2, new WanderBehaviour());
     }
 
     /**
@@ -35,9 +33,7 @@ public class Koopa extends Enemy {
      * @return
      */
     @Override
-    protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(30, "punch");
-    }
+    protected abstract IntrinsicWeapon getIntrinsicWeapon();
 
     /**
      * Adds the Attack action to the actionlist of player
@@ -50,7 +46,7 @@ public class Koopa extends Enemy {
      */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
-
+        this.behaviours.put(0, new FollowBehaviour(otherActor)); //attack action takes place thus follow behaviour implemented
         return super.allowableActions(otherActor, direction, map);
 
     }
@@ -75,19 +71,21 @@ public class Koopa extends Enemy {
         if (this.hasCapability(DORMANT)) {
             return new DoNothingAction();
         }
-        for (Behaviour Behaviour : behaviours.values()) {
-            Action action = Behaviour.getAction(this, map);
-            if (action != null)
-                return action;
-        }
-        return new DoNothingAction();
+        return super.playTurn(actions,lastAction,map,display);
     }
 
+    /**
+     * Changes display char to D
+     */
     public void dormant() {
         this.setDisplayChar('D');
         this.addCapability(DORMANT);
     }
 
+    /**
+     * String representation
+     * @return
+     */
     @Override
     public String toString() {
         if (this.hasCapability(DORMANT)) {

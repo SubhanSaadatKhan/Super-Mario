@@ -1,16 +1,27 @@
-package game.grounds;
+package game.grounds.harmful;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
-
+/**
+ * Class representing Lava Ground
+ */
 public class Lava extends Ground {
 
+    /**
+     * Constructor
+     */
     public Lava(){
         super('L');
     }
 
+    /**
+     * Method to check if a particular actor is allowed to enter a ground
+     *
+     * @param actor the Actor to check
+     * @return true (if actor not player)
+     */
     @Override
     public boolean canActorEnter(Actor actor) {
         char actChar = actor.getDisplayChar();
@@ -20,6 +31,10 @@ public class Lava extends Ground {
         return true;
     }
 
+    /**
+     * Gives a damage of 15 every turn to the actor standing on it
+     * @param location The location of the Ground
+     */
     @Override
     public void tick(Location location) {
         if (location.containsAnActor()){

@@ -4,16 +4,25 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
-import game.grounds.jumpablegrounds.Mature;
 
+/**
+ * A class representing Fire
+ */
 public class Fire extends Item {
     private int value;
 
+    /**
+     * Constructor
+     */
     public Fire() {
         super("Fire", 'v', false);
         value = 0;
     }
 
+    /**
+     * Fire extinguishes after 3 turns also gives 20 damage to the actor standing on it
+     * @param currentLocation The location of the ground on which we lie.
+     */
     @Override
     public void tick(Location currentLocation) {
         value += 1;
