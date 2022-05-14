@@ -20,7 +20,7 @@ public class Floor extends Ground {
     @Override
     public boolean canActorEnter(Actor actor) {
         char actChar = actor.getDisplayChar();
-        if (actChar == 'g' || actChar == 'K') { //Enemy cannot enter floor
+        if (actChar == 'g' || actChar == 'K' || actChar == 'F') { //Enemy cannot enter floor
             return false;
         }
         return true;

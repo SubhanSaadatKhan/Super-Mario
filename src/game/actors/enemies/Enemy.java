@@ -51,7 +51,7 @@ public abstract class Enemy extends Actor implements Resettable {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         this.behaviours.put(1, new FollowBehaviour(otherActor)); //attack action takes place thus follow behaviour implemented
         ActionList actions = new ActionList();
-        if(otherActor.hasCapability(HOSTILE_TO_ENEMY)) {
+        if(otherActor.hasCapability(HOSTILE_TO_ENEMY) && this.getDisplayChar()!='D') {
             actions.add(new AttackAction(this,direction));
         }
         return actions;

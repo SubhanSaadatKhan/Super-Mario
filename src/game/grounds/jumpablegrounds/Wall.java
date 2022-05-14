@@ -29,7 +29,8 @@ public class Wall extends Ground implements JumpableGround {
      */
     @Override
     public boolean canActorEnter(Actor actor) {
-        if (actor.getDisplayChar() == 'm') { //player cannot enter wall without jumping
+        char show = actor.getDisplayChar();
+        if (show == 'm' || show == 'g' || show == 'K') { //player cannot enter wall without jumping
             return false;
         }
         return true;

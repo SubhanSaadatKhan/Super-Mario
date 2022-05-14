@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.actors.enemies.FlyingKoopa;
 import game.actors.enemies.Koopa;
 import game.items.Key;
 import game.items.consumables.SuperMushroom;
@@ -94,6 +95,10 @@ public class AttackAction extends Action {
             if (target.getDisplayChar() == 'K') { //do not remove an unconscious Koopa as it will go into dormant state
                 Koopa koopa = (Koopa) target;
                 koopa.dormant();
+            }
+            else if (target.getDisplayChar() == 'F') { //do not remove an unconscious Koopa as it will go into dormant state
+                FlyingKoopa flyingKoopa = (FlyingKoopa) target;
+                flyingKoopa.dormant();
             }
             else if (target.getDisplayChar() == 'B') { //do not remove an unconscious Koopa as it will go into dormant state
                 map.locationOf(target).addItem(new Key());
