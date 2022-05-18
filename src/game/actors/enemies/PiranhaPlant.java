@@ -8,6 +8,8 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.AttackBehaviour;
 
+import static game.Status.RESETTABLE;
+
 
 /**
  * A class representing Piranha Plant
@@ -54,7 +56,11 @@ public class PiranhaPlant extends Enemy {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+        if (this.hasCapability(RESETTABLE)) {
+            if (this.isConscious()) {
+                this.increaseMaxHp(50);
+            }
+        }
         return super.playTurn(actions,lastAction,map,display);
-
     }
 }

@@ -8,6 +8,8 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.behaviours.FollowBehaviour;
 
+import static game.Status.RESETTABLE;
+
 
 /**
  * A class representing Bowser
@@ -56,7 +58,11 @@ public class Bowser extends Enemy {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-
+        if (this.hasCapability(RESETTABLE)) {
+            map.removeActor(this);
+            map.at(3,4).addActor(this);
+            this.heal(this.getMaxHp());
+        }
         return super.playTurn(actions,lastAction,map,display);
     }
 }
