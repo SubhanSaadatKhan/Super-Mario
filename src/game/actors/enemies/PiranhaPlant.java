@@ -2,20 +2,12 @@ package game.actors.enemies;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
-import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.actions.AttackAction;
 import game.behaviours.AttackBehaviour;
-import game.behaviours.Behaviour;
-import game.behaviours.FollowBehaviour;
 
-import java.util.Map;
-import java.util.TreeMap;
-
-import static game.Status.HOSTILE_TO_ENEMY;
 
 /**
  * A class representing Piranha Plant
@@ -27,6 +19,7 @@ public class PiranhaPlant extends Enemy {
     public PiranhaPlant(){
         super("Piranha Plant", 'Y', 150);
         this.behaviours.put(0, new AttackBehaviour());
+        setIntrinsicWeaponDamage(90);
     }
 
     /**
@@ -36,7 +29,7 @@ public class PiranhaPlant extends Enemy {
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(90, "chomps");
+        return new IntrinsicWeapon(getIntrinsicWeaponDamage(), "chomps");
     }
     /**
      * Adds the Attack action to the actionlist of player

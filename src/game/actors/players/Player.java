@@ -7,9 +7,11 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.Location;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Status;
 import game.actions.ResetAction;
 import game.effects.InvincibleEffect;
+import game.items.consumables.magicalwaters.Bottle;
 import game.items.portable.Coin;
 import game.reset.Resettable;
 
@@ -22,6 +24,8 @@ public class Player extends Actor implements Resettable {
 
     private final Menu menu = new Menu();
     private final Coin wallet; // Coins that the player has
+    private int intrinsicWeaponDamage;
+    private Bottle bottle;
 
     /**
      * Constructor.
@@ -34,7 +38,9 @@ public class Player extends Actor implements Resettable {
         super(name, displayChar, hitPoints);
         this.addCapability(Status.HOSTILE_TO_ENEMY);
         wallet = new Coin(0, false);
+        intrinsicWeaponDamage = 5;
         this.addItemToInventory(wallet);
+        bottle = null;
         this.registerInstance();
     }
 
@@ -83,6 +89,19 @@ public class Player extends Actor implements Resettable {
         return this.hasCapability(TALL) ? Character.toUpperCase(super.getDisplayChar()) : super.getDisplayChar();
     }
 
+    @Override
+    protected IntrinsicWeapon getIntrinsicWeapon() {
+        return new IntrinsicWeapon(intrinsicWeaponDamage, "punches");
+    }
+
+    public int getIntrinsicWeaponDamage() {
+        return intrinsicWeaponDamage;
+    }
+
+    public void setIntrinsicWeaponDamage(int intrinsicWeaponDamage) {
+        this.intrinsicWeaponDamage = intrinsicWeaponDamage;
+    }
+
     /**
      * Make the player resettable
      */
@@ -96,5 +115,17 @@ public class Player extends Actor implements Resettable {
      */
     public String getInfo() {
         return this + this.printHp();
+    }
+
+    public boolean hasBottle() {
+        return bottle != null;
+    }
+
+    public void getABottle(Bottle bottle) {
+        this.bottle = bottle;
+    }
+
+    public Bottle getBottle() {
+        return bottle;
     }
 }

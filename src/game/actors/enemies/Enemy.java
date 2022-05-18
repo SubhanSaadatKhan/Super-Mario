@@ -9,8 +9,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.AttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
-import game.behaviours.FollowBehaviour;
-import game.behaviours.WanderBehaviour;
+import game.behaviours.DrinkWaterBehaviour;
 import game.reset.Resettable;
 
 import java.util.Map;
@@ -24,6 +23,7 @@ import static game.Status.*;
 public abstract class Enemy extends Actor implements Resettable {
 
     protected Map<Integer, Behaviour> behaviours = new TreeMap<>();
+    protected int intrinsicWeaponDamage;
 
     /**
      * Constructor
@@ -35,6 +35,7 @@ public abstract class Enemy extends Actor implements Resettable {
     public Enemy(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         this.behaviours.put(1, new AttackBehaviour());
+        this.behaviours.put(2, new DrinkWaterBehaviour());
         this.registerInstance();
     }
 
@@ -83,5 +84,13 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public void resetInstance() {
         this.addCapability(RESETTABLE);
+    }
+
+    public int getIntrinsicWeaponDamage() {
+        return intrinsicWeaponDamage;
+    }
+
+    public void setIntrinsicWeaponDamage(int intrinsicWeaponDamage) {
+        this.intrinsicWeaponDamage = intrinsicWeaponDamage;
     }
 }

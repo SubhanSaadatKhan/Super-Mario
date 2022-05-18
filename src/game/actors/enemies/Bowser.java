@@ -2,20 +2,12 @@ package game.actors.enemies;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
-import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import game.actions.AttackAction;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.Behaviour;
 import game.behaviours.FollowBehaviour;
 
-import java.util.Map;
-import java.util.TreeMap;
-
-import static game.Status.HOSTILE_TO_ENEMY;
 
 /**
  * A class representing Bowser
@@ -27,6 +19,7 @@ public class Bowser extends Enemy {
      */
     public Bowser(){
         super("Bowser", 'B', 500);
+        setIntrinsicWeaponDamage(80);
     }
     /**
      * Creates a new IntrinsicWeapon
@@ -35,8 +28,7 @@ public class Bowser extends Enemy {
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-
-        return new IntrinsicWeapon(80, "punch");
+        return new IntrinsicWeapon(getIntrinsicWeaponDamage(), "punch");
     }
 
     /**

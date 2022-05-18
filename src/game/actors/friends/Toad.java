@@ -5,10 +5,11 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actions.GetBottleAction;
 import game.actions.TradingAction;
 import game.items.portable.Coin;
-import game.items.consumables.PowerStar;
-import game.items.consumables.SuperMushroom;
+import game.items.consumables.magicalitems.PowerStar;
+import game.items.consumables.magicalitems.SuperMushroom;
 import game.items.weapons.Wrench;
 //final
 /**
@@ -16,12 +17,15 @@ import game.items.weapons.Wrench;
  */
 public class Toad extends Friend {
 
+    private boolean hasBottle;
+
     /**
      * Constructor of Toad,
      * initialize the Toad.
      */
     public Toad() {
         super("Toad", 'O', 1);
+        hasBottle = true;
     }
 
     /**
@@ -52,6 +56,13 @@ public class Toad extends Friend {
         actions.add(new TradingAction(new Wrench(), new Coin(200)));
         actions.add(new TradingAction(new SuperMushroom(), new Coin(400)));
         actions.add(new TradingAction(new PowerStar(), new Coin(600)));
+        if (hasBottle) {
+            actions.add(new GetBottleAction(this));
+        }
         return actions;
+    }
+
+    public void sendsBottle() {
+        hasBottle = false;
     }
 }

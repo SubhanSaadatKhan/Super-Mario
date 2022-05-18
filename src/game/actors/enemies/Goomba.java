@@ -9,7 +9,6 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Status;
-import game.behaviours.Behaviour;
 import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
 
@@ -28,7 +27,8 @@ public class Goomba extends Enemy {
      */
     public Goomba() {
         super("Goomba", 'g', 20);
-        this.behaviours.put(2, new WanderBehaviour());
+        this.behaviours.put(3, new WanderBehaviour());
+        setIntrinsicWeaponDamage(10);
     }
 
     /**
@@ -39,7 +39,7 @@ public class Goomba extends Enemy {
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
 
-        return new IntrinsicWeapon(10, "kick");
+        return new IntrinsicWeapon(getIntrinsicWeaponDamage(), "kick");
     }
 
     /**

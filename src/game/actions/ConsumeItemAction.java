@@ -31,7 +31,7 @@ public class ConsumeItemAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        target.Consumed(actor, map.locationOf(actor));
+        target.consumed(actor, map.locationOf(actor));
         return menuDescription(actor);
     }
 

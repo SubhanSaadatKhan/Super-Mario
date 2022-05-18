@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.players.Player;
 import game.items.portable.Coin;
-import game.items.consumables.PowerStar;
+import game.items.consumables.magicalitems.PowerStar;
 //final
 /**
  * Action for trading with Toad

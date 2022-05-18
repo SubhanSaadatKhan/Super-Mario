@@ -24,7 +24,7 @@ public abstract class BaseKoopa extends Enemy {
      */
     public BaseKoopa(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
-        this.behaviours.put(2, new WanderBehaviour());
+        this.behaviours.put(3, new WanderBehaviour());
     }
 
     /**

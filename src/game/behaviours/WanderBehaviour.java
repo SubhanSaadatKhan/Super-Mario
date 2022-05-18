@@ -23,7 +23,7 @@ public class WanderBehaviour extends Action implements Behaviour {
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        ArrayList<Action> actions = new ArrayList<Action>();
+        ArrayList<Action> actions = new ArrayList<>();
 
         for (Exit exit : map.locationOf(actor).getExits()) {
             Location destination = exit.getDestination();

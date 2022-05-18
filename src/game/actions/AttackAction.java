@@ -12,7 +12,7 @@ import game.actors.enemies.koopas.BaseKoopa;
 import game.actors.enemies.koopas.FlyingKoopa;
 import game.actors.enemies.koopas.NormalKoopa;
 import game.items.portable.Key;
-import game.items.consumables.SuperMushroom;
+import game.items.consumables.magicalitems.SuperMushroom;
 
 import static game.Status.*;
 

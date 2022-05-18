@@ -1,4 +1,4 @@
-package game.items.consumables;
+package game.items.consumables.magicalitems;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.ConsumeItemAction;
 import game.effects.InvincibleEffect;
+import game.items.consumables.Consumable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +60,7 @@ public class PowerStar extends Item implements Consumable {
      * @param currentLocation The location that ConsumeItemAction happens
      */
     @Override
-    public void Consumed(Actor actor, Location currentLocation) {
+    public void consumed(Actor actor, Location currentLocation) {
         if (actor.getInventory().contains(this)) {
             actor.heal(200);
             actor.addItemToInventory(new InvincibleEffect("INVINCIBLE", ' ', false));

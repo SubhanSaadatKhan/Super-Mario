@@ -13,6 +13,7 @@ public class NormalKoopa extends BaseKoopa {
      */
     public NormalKoopa() {
         super("Koopa", 'K', 100);
+        setIntrinsicWeaponDamage(30);
     }
 
     /**
@@ -22,6 +23,6 @@ public class NormalKoopa extends BaseKoopa {
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(30, "punch");
+        return new IntrinsicWeapon(getIntrinsicWeaponDamage(), "punch");
     }
 }

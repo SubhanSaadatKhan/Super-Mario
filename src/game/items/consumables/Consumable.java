@@ -12,5 +12,5 @@ public interface Consumable {
      * @param actor           The actor that will do a ConsumeItemAction
      * @param currentLocation The location that ConsumeItemAction happens
      */
-    void Consumed(Actor actor, Location currentLocation);
+    void consumed(Actor actor, Location currentLocation);
 }

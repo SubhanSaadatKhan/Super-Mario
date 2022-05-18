@@ -24,6 +24,7 @@ public class FlyingKoopa extends BaseKoopa {
      */
     public FlyingKoopa() {
         super("Flying Koopa", 'F', 150);
+        setIntrinsicWeaponDamage(30);
     }
 
     /**
@@ -33,7 +34,7 @@ public class FlyingKoopa extends BaseKoopa {
      */
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(30, "punch");
+        return new IntrinsicWeapon(getIntrinsicWeaponDamage(), "punch");
     }
 
 

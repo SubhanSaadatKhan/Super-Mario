@@ -16,6 +16,8 @@ import game.actors.players.Player;
 import game.grounds.harmless.Dirt;
 import game.grounds.harmless.Floor;
 import game.grounds.harmful.Lava;
+import game.grounds.harmless.fountains.HealthFountain;
+import game.grounds.harmless.fountains.PowerFountain;
 import game.grounds.harmless.jumpablegrounds.Sprout;
 import game.grounds.harmless.jumpablegrounds.Wall;
 import game.grounds.harmless.jumpablegrounds.teleportablegrounds.WarpPipe;
@@ -130,6 +132,8 @@ public class Application {
         world.addPlayer(mario, gameMap.at(42, 10));
 
         gameMap.at(44, 11).addActor(new Toad());
+        gameMap.at(41, 11).setGround(new HealthFountain());
+        gameMap.at(44, 10).setGround(new PowerFountain());
         world.run();
 
     }
