@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actors.enemies.Goomba;
 import game.grounds.harmless.Dirt;
+import game.items.consumables.FireFlower;
 import game.items.portable.Coin;
 
 import static game.Status.*;
@@ -42,6 +43,9 @@ public class Sprout extends Tree {
         value += 1;
         if (value % 10 == 0) {
             location.setGround(new Sapling());
+            if (Math.random() <= 0.5) {
+                location.addItem(new FireFlower());
+            }
         }
         //spawns goomba
         else {

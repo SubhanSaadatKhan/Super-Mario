@@ -51,7 +51,7 @@ public class Player extends Actor implements Resettable {
                 this.removeCapability(TALL);
             }
             if (this.hasCapability(INVINCIBLE)) {
-                this.removeItemFromInventory(new InvincibleEffect("INVINCIBLE", ' ', true));
+                this.removeItemFromInventory(new InvincibleEffect());
             }
             this.heal(this.getMaxHp());
             this.removeCapability(RESETTABLE);

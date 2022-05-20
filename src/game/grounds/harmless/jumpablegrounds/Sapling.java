@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.grounds.harmless.Dirt;
+import game.items.consumables.FireFlower;
 import game.items.portable.Coin;
 
 import static game.Status.*;
@@ -38,6 +39,9 @@ public class Sapling extends Tree {
         value += 1;
         if (value % 10 == 0) {
             location.setGround(new Mature());
+            if (Math.random() <= 0.5) {
+                location.addItem(new FireFlower());
+            }
         }
         //produces $20 coin
         else {

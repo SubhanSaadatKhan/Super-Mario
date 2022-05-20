@@ -53,6 +53,13 @@ public class Coin extends Item implements Resettable {
             currentLocation.removeItem(this);
             this.removeCapability(RESETTABLE);
         }
+        for (Item item : currentLocation.getItems()) {
+            if (item instanceof Coin) {
+                Coin coin = (Coin) item;
+                this.increase(coin);
+                currentLocation.removeItem(coin);
+            }
+        }
     }
 
     /**

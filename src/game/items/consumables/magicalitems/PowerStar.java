@@ -63,11 +63,11 @@ public class PowerStar extends Item implements Consumable {
     public void consumed(Actor actor, Location currentLocation) {
         if (actor.getInventory().contains(this)) {
             actor.heal(200);
-            actor.addItemToInventory(new InvincibleEffect("INVINCIBLE", ' ', false));
+            actor.addItemToInventory(new InvincibleEffect());
             actor.removeItemFromInventory(this);
         } else if (currentLocation.getItems().contains(this)) {
             actor.heal(200);
-            actor.addItemToInventory(new InvincibleEffect("INVINCIBLE", ' ', false));
+            actor.addItemToInventory(new InvincibleEffect());
             currentLocation.removeItem(this);
         }
     }

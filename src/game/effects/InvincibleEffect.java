@@ -17,13 +17,9 @@ public class InvincibleEffect extends Item {
     /***
      * Constructor of InvincibleEffect,
      * it will initialize the InvincibleEffect.
-     *
-     * @param name the name of this Item
-     * @param displayChar the character to use to represent this item if it is on the ground
-     * @param portable true if and only if the Item can be picked up
      */
-    public InvincibleEffect(String name, char displayChar, boolean portable) {
-        super(name, displayChar, portable);
+    public InvincibleEffect() {
+        super("INVINCIBLE", ' ', false);
         this.addCapability(INVINCIBLE);
         turns = 11;
     }
