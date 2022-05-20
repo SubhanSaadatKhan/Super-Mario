@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Status;
 import game.actions.ResetAction;
+import game.effects.FireAttackEffect;
 import game.effects.InvincibleEffect;
 import game.items.consumables.magicalwaters.Bottle;
 import game.items.portable.Coin;
@@ -53,6 +54,9 @@ public class Player extends Actor implements Resettable {
             if (this.hasCapability(INVINCIBLE)) {
                 this.removeItemFromInventory(new InvincibleEffect());
             }
+            if (this.hasCapability(FIRE_ATTACK)) {
+                this.removeItemFromInventory(new FireAttackEffect());
+            }
             this.heal(this.getMaxHp());
             this.removeCapability(RESETTABLE);
 //			return menu.showMenu(this, actions, display);
@@ -66,6 +70,9 @@ public class Player extends Actor implements Resettable {
 
         if (this.hasCapability(INVINCIBLE)) { // Show the INVINCIBLE message if the player is INVINCIBLE
             display.println(this + " is INVINCIBLE");
+        }
+        if (this.hasCapability(FIRE_ATTACK)) {
+            display.println(this + " is able to perform Fire attack!");
         }
         Location location = map.locationOf(this); // Print the player's information
         display.println(this.getInfo() + " at (" + location.x() + ", " + location.y() + ")");

@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.AttackAction;
+import game.actions.FireAttackAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.Behaviour;
 import game.behaviours.DrinkWaterBehaviour;
@@ -55,6 +56,9 @@ public abstract class Enemy extends Actor implements Resettable {
         }
         else if (this.getDisplayChar()=='D' && otherActor.hasCapability(DESTRUCTIVE)){
             actions.add(new AttackAction(this,direction));
+        }
+        if (otherActor.hasCapability(HOSTILE_TO_ENEMY) && otherActor.hasCapability(FIRE_ATTACK)) {
+            actions.add(new FireAttackAction(this, direction));
         }
         return actions;
     }
