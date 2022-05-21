@@ -10,6 +10,9 @@ import game.effects.FireAttackEffect;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * FireFlower, can be consumed by player. Player will get FireAttackEffect after consuming
+ */
 public class FireFlower extends Item implements Consumable {
     /***
      * Constructor of FireFlower.

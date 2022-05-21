@@ -5,6 +5,9 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.effects.FireAttackEffect;
 import game.items.Fire;
 
+/**
+ * Action for performing a fire attack
+ */
 public class FireAttackAction extends AttackAction {
     /**
      * Constructor of FireAttackAction.

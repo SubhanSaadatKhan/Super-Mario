@@ -18,6 +18,7 @@ import game.reset.Resettable;
 
 import static game.Status.*;
 //final
+
 /**
  * Class representing the Player.
  */
@@ -25,8 +26,8 @@ public class Player extends Actor implements Resettable {
 
     private final Menu menu = new Menu();
     private final Coin wallet; // Coins that the player has
-    private int intrinsicWeaponDamage;
-    private Bottle bottle;
+    private int intrinsicWeaponDamage; // The intrinsicWeaponDamage
+    private Bottle bottle; // The player's Magical Bottle
 
     /**
      * Constructor.
@@ -101,10 +102,20 @@ public class Player extends Actor implements Resettable {
         return new IntrinsicWeapon(intrinsicWeaponDamage, "punches");
     }
 
+    /**
+     * Accessor of intrinsicWeaponDamage
+     *
+     * @return The intrinsicWeaponDamage of the player
+     */
     public int getIntrinsicWeaponDamage() {
         return intrinsicWeaponDamage;
     }
 
+    /**
+     * Mutator of intrinsicWeaponDamage
+     *
+     * @param intrinsicWeaponDamage The new intrinsicWeaponDamage
+     */
     public void setIntrinsicWeaponDamage(int intrinsicWeaponDamage) {
         this.intrinsicWeaponDamage = intrinsicWeaponDamage;
     }
@@ -124,14 +135,27 @@ public class Player extends Actor implements Resettable {
         return this + this.printHp();
     }
 
+    /**
+     * @return if the player has a Bottle
+     */
     public boolean hasBottle() {
         return bottle != null;
     }
 
+    /**
+     * Get a Bottle
+     *
+     * @param bottle The Bottle
+     */
     public void getABottle(Bottle bottle) {
         this.bottle = bottle;
     }
 
+    /**
+     * Mutator of Bottle
+     *
+     * @return The player's Bottle
+     */
     public Bottle getBottle() {
         return bottle;
     }

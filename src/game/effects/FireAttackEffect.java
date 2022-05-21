@@ -5,6 +5,9 @@ import edu.monash.fit2099.engine.positions.Location;
 
 import static game.Status.FIRE_ATTACK;
 
+/**
+ * Effect that can make the player perform a FireAttack
+ */
 public class FireAttackEffect extends Effect {
     /***
      * Constructor of FireAttackEffect.

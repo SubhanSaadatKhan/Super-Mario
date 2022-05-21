@@ -12,18 +12,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * The magical bottle class, player can use it to store magical water to drink
+ */
 public class Bottle extends Item implements Consumable {
 
-    Stack<Water> bottle;
+    Stack<Water> bottle; // To store water
 
     /***
-     * Constructor.
+     * Constructor of Bottle.
      */
     public Bottle() {
         super("Bottle", 'b', false);
         bottle = new Stack<>();
     }
 
+    /**
+     * This method will make the player be able to interact with Bottle
+     *
+     * @return the ConsumeItemAction if the Bottle is not empty
+     */
     @Override
     public List<Action> getAllowableActions() {
         if (!bottle.isEmpty()) {
@@ -34,22 +42,36 @@ public class Bottle extends Item implements Consumable {
         return super.getAllowableActions();
     }
 
-    public void refill(Fountain fountains) {
-        if (!fountains.isEmpty()) {
+    /**
+     * Refill the bottle using water in the fountain
+     *
+     * @param fountain the fountain that provide water to refill
+     */
+    public void refill(Fountain fountain) {
+        if (!fountain.isEmpty()) {
             int slots = 5;
-            for (int i = fountains.getCurrent(); i > 0 && slots > 0; i--, slots--) {
-                bottle.push(fountains.getWaters().get(i - 1));
-                fountains.getWaters().remove(i - 1);
-                fountains.setCurrent(fountains.getCurrent() - 1);
+            for (int i = fountain.getCurrent(); i > 0 && slots > 0; i--, slots--) {
+                bottle.push(fountain.getWaters().get(i - 1));
+                fountain.getWaters().remove(i - 1);
+                fountain.setCurrent(fountain.getCurrent() - 1);
             }
         }
     }
 
+    /**
+     * Consume the next water in the bottle
+     *
+     * @param actor           The actor that will do a ConsumeItemAction
+     * @param currentLocation The location that ConsumeItemAction happens
+     */
     @Override
     public void consumed(Actor actor, Location currentLocation) {
         bottle.pop().consumed(actor, currentLocation);
     }
 
+    /**
+     * @return The name of the Bottle and waters in it
+     */
     @Override
     public String toString() {
         return "Bottle" + bottle;

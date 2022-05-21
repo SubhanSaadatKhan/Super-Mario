@@ -2,6 +2,9 @@ package game.effects;
 
 import edu.monash.fit2099.engine.items.Item;
 
+/**
+ * Effect, a buff or debuff that can last for several turns
+ */
 public abstract class Effect extends Item {
 
     protected int turns; // The number of turns that the Effect can exist

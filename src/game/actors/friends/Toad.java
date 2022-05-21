@@ -12,12 +12,13 @@ import game.items.consumables.magicalitems.PowerStar;
 import game.items.consumables.magicalitems.SuperMushroom;
 import game.items.weapons.Wrench;
 //final
+
 /**
  * Toad, a friendly actor who can sell items to the player.
  */
 public class Toad extends Friend {
 
-    private boolean hasBottle;
+    private boolean hasBottle; // if the Toad has a Bottle
 
     /**
      * Constructor of Toad,
@@ -39,7 +40,7 @@ public class Toad extends Friend {
      */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        return super.playTurn(actions,lastAction,map,display);
+        return super.playTurn(actions, lastAction, map, display);
     }
 
     /**
@@ -62,6 +63,9 @@ public class Toad extends Friend {
         return actions;
     }
 
+    /**
+     * Send the Bottle, Toad will not have the Bottle
+     */
     public void sendsBottle() {
         hasBottle = false;
     }
