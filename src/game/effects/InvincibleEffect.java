@@ -1,7 +1,6 @@
 package game.effects;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
 
 import static game.Status.INVINCIBLE;
@@ -10,10 +9,7 @@ import static game.Status.INVINCIBLE;
  * Invincible effect,
  * if it is in the player's inventory, the player will have the status INVINCIBLE
  */
-public class InvincibleEffect extends Item {
-
-    private int turns; // The number of turns that the InvincibleEffect can exist
-
+public class InvincibleEffect extends Effect {
     /***
      * Constructor of InvincibleEffect,
      * it will initialize the InvincibleEffect.

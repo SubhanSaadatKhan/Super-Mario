@@ -1,15 +1,11 @@
 package game.effects;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
 
 import static game.Status.FIRE_ATTACK;
 
-public class FireAttackEffect extends Item {
-
-    private int turns; // The number of turns that the FireAttackEffect can exist
-
+public class FireAttackEffect extends Effect {
     /***
      * Constructor.
      */
