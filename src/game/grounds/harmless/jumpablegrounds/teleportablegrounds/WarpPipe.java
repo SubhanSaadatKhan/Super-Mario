@@ -72,6 +72,7 @@ public class WarpPipe extends Ground implements JumpableGround, Resettable {
             if(location.getActor() == null && !location.map().equals(map2)){
                 location.addActor(new PiranhaPlant());
             }
+            this.removeCapability(RESETTABLE);
         }
     }
 

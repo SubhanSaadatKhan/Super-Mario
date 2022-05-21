@@ -60,6 +60,7 @@ public class PiranhaPlant extends Enemy {
             if (this.isConscious()) {
                 this.increaseMaxHp(50);
             }
+            this.removeCapability(RESETTABLE);
         }
         return super.playTurn(actions,lastAction,map,display);
     }
