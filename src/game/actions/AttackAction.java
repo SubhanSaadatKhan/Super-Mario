@@ -17,6 +17,7 @@ import game.items.consumables.magicalitems.SuperMushroom;
 import static game.Status.*;
 
 //final
+
 /**
  * Special Action for attacking other Actors.
  */
@@ -68,6 +69,7 @@ public class AttackAction extends Action {
                 }
                 map.locationOf(target).addItem(new SuperMushroom());
                 map.removeActor(target);
+                actor.removeItemFromInventory((Item) weapon);
                 result = System.lineSeparator() + "Koopa is killed.";
                 return result;
             }
@@ -96,24 +98,20 @@ public class AttackAction extends Action {
             if (target.getDisplayChar() == 'K') { //do not remove an unconscious Koopa as it will go into dormant state
                 BaseKoopa koopa = (NormalKoopa) target;
                 koopa.dormant();
-            }
-            else if (target.getDisplayChar() == 'F') { //do not remove an unconscious Koopa as it will go into dormant state
+            } else if (target.getDisplayChar() == 'F') { //do not remove an unconscious Koopa as it will go into dormant state
                 BaseKoopa flyingKoopa = (FlyingKoopa) target;
                 flyingKoopa.dormant();
-            }
-            else if (target.getDisplayChar() == 'B') { //do not remove an unconscious Koopa as it will go into dormant state
+            } else if (target.getDisplayChar() == 'B') { //do not remove an unconscious Koopa as it will go into dormant state
                 map.locationOf(target).addItem(new Key());
                 // remove actor
                 map.removeActor(target);
                 result += System.lineSeparator() + target + " is killed, Key dropped";
-            }
-            else if (target.getDisplayChar() == 'Y') { //do not remove an unconscious Koopa as it will go into dormant state
+            } else if (target.getDisplayChar() == 'Y') { //do not remove an unconscious Koopa as it will go into dormant state
                 actor.addCapability(SPACE_SUIT);
                 // remove actor
                 map.removeActor(target);
                 result += System.lineSeparator() + target + " is killed.";
-            }
-            else {
+            } else {
                 // remove actor
                 map.removeActor(target);
                 result += System.lineSeparator() + target + " is killed.";

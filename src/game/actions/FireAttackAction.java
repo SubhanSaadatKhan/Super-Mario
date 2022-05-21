@@ -5,9 +5,12 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.effects.FireAttackEffect;
 import game.items.Fire;
 
-public class FireAttackAction extends AttackAction{
+/**
+ * Action for performing a fire attack
+ */
+public class FireAttackAction extends AttackAction {
     /**
-     * Constructor.
+     * Constructor of FireAttackAction.
      *
      * @param target    the Actor to attack
      * @param direction the attack direction
@@ -16,6 +19,13 @@ public class FireAttackAction extends AttackAction{
         super(target, direction);
     }
 
+    /**
+     * Execute this FireAttackAction
+     *
+     * @param actor the Actor to attack
+     * @param map   the game map
+     * @return The description of the result after execution
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         map.locationOf(target).addItem(new Fire());
@@ -23,6 +33,12 @@ public class FireAttackAction extends AttackAction{
         return menuDescription(actor);
     }
 
+    /**
+     * Return the menu description of this action
+     *
+     * @param actor the Actor to attack
+     * @return The description of this action
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " attacks " + target + " at " + direction + " with fire!";

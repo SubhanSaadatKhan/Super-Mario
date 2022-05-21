@@ -2,7 +2,6 @@ package game.grounds.harmless.jumpablegrounds.teleportablegrounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
@@ -72,6 +71,7 @@ public class WarpPipe extends Ground implements JumpableGround, Resettable {
             if(location.getActor() == null && !location.map().equals(map2)){
                 location.addActor(new PiranhaPlant());
             }
+            this.removeCapability(RESETTABLE);
         }
     }
 

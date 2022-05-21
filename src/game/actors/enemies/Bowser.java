@@ -62,6 +62,7 @@ public class Bowser extends Enemy {
             map.removeActor(this);
             map.at(3,4).addActor(this);
             this.heal(this.getMaxHp());
+            this.removeCapability(RESETTABLE);
         }
         return super.playTurn(actions,lastAction,map,display);
     }
