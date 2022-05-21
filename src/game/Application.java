@@ -124,9 +124,15 @@ public class Application {
         //placing a Warp Pipe in the top left corner of LavaMap
         lavaMap.at(0,0).setGround(new WarpPipe(gameMap,lavaMap));
 
-        //todo still understand
+
         lavaMap.at(3,4).addActor(new Bowser());
-        lavaMap.at(3,6).addActor(new PrincessPeach());
+
+        //gives a random value from 0-6
+        int x_random = rand.nextInt(6);
+        //gives a random value from 5-8
+        int y_random = rand.nextInt(3) + 5;
+        lavaMap.at(x_random,y_random).addActor(new PrincessPeach());
+
 
         Player mario = new Player("Player", 'm', 1000000);
         world.addPlayer(mario, gameMap.at(42, 10));

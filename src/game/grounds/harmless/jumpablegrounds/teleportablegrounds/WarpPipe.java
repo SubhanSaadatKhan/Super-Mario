@@ -2,6 +2,7 @@ package game.grounds.harmless.jumpablegrounds.teleportablegrounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
@@ -9,12 +10,14 @@ import game.actions.JumpAction;
 import game.actions.TeleportAction;
 import game.actors.enemies.PiranhaPlant;
 import game.grounds.harmless.jumpablegrounds.JumpableGround;
+import game.reset.Resettable;
 
+import static game.Status.RESETTABLE;
 import static game.Status.SPACE_SUIT;
 /**
  * Class representing Warp Pipe
  */
-public class WarpPipe extends Ground implements JumpableGround {
+public class WarpPipe extends Ground implements JumpableGround, Resettable {
     boolean spawnPiranha;
     GameMap map1,map2; //stores both maps
 
@@ -29,6 +32,15 @@ public class WarpPipe extends Ground implements JumpableGround {
         map2 = initNewMap;
         spawnPiranha = false;
     }
+
+    /**
+     * Make the tree object resettable
+     */
+    @Override
+    public void resetInstance() {
+        this.addCapability(RESETTABLE);
+    }
+
 
     /**
      * Method to check if a particular actor is allowed to enter a ground
@@ -55,6 +67,12 @@ public class WarpPipe extends Ground implements JumpableGround {
             location.addActor(new PiranhaPlant());
             spawnPiranha = true;
         }
+//        else if (this.hasCapability(RESETTABLE)){
+//            new Display().println("im innnnnnnnnn");
+//            if(location.getActor()==null && !location.map().equals(map2)){
+//                location.addActor(new PiranhaPlant());
+//            }
+//        }
     }
 
     /**

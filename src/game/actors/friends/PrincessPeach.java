@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actions.UnlockAction;
 
 import static game.Status.*;
 
@@ -32,9 +33,9 @@ public class PrincessPeach extends Friend {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
 
-        if (otherActor.hasCapability(INTERACT_WITH_PRINCESS)){
-            //TODO
-//            actions.add(new SpeakingAction()));
+        if (otherActor.hasCapability(UNLOCK_PRINCESS)){
+
+            actions.add(new UnlockAction());
         }
 
         return actions;
