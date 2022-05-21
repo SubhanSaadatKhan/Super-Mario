@@ -7,7 +7,7 @@ import game.actions.RefillBottomAction;
 import game.actors.players.Player;
 import game.items.consumables.magicalwaters.PowerWater;
 
-public class PowerFountain extends Fountains{
+public class PowerFountain extends Fountain {
 
     /**
      * Constructor.

@@ -4,13 +4,13 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.players.Player;
-import game.grounds.harmless.fountains.Fountains;
+import game.grounds.harmless.fountains.Fountain;
 
 public class RefillBottomAction extends Action {
 
-    Fountains target;
+    Fountain target;
 
-    public RefillBottomAction(Fountains target) {
+    public RefillBottomAction(Fountain target) {
         this.target = target;
     }
 

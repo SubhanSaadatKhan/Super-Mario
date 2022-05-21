@@ -5,7 +5,7 @@ import game.items.consumables.magicalwaters.Water;
 
 import java.util.ArrayList;
 
-public abstract class Fountains extends Ground {
+public abstract class Fountain extends Ground {
 
     private final int maxCapacity;
     private int current;
@@ -18,7 +18,7 @@ public abstract class Fountains extends Ground {
      *
      * @param displayChar character to display for this type of terrain
      */
-    public Fountains(char displayChar) {
+    public Fountain(char displayChar) {
         super(displayChar);
         maxCapacity = 10;
         current = 0;

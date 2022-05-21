@@ -7,7 +7,7 @@ import game.actions.RefillBottomAction;
 import game.actors.players.Player;
 import game.items.consumables.magicalwaters.HealingWater;
 
-public class HealthFountain extends Fountains{
+public class HealthFountain extends Fountain {
 
     /**
      * Constructor.

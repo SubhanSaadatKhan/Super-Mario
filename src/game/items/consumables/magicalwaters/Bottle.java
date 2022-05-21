@@ -5,7 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.ConsumeItemAction;
-import game.grounds.harmless.fountains.Fountains;
+import game.grounds.harmless.fountains.Fountain;
 import game.items.consumables.Consumable;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class Bottle extends Item implements Consumable {
         return super.getAllowableActions();
     }
 
-    public void refill(Fountains fountains) {
+    public void refill(Fountain fountains) {
         if (!fountains.isEmpty()) {
             int slots = 5;
             for (int i = fountains.getCurrent(); i > 0 && slots > 0; i--, slots--) {
