@@ -9,10 +9,10 @@ import edu.monash.fit2099.engine.positions.Location;
  * A class representing Fire
  */
 public class Fire extends Item {
-    private int value;
+    private int value;  // turns that already exist
 
     /**
-     * Constructor
+     * Constructor of Fire
      */
     public Fire() {
         super("Fire", 'v', false);
@@ -21,6 +21,7 @@ public class Fire extends Item {
 
     /**
      * Fire extinguishes after 3 turns also gives 20 damage to the actor standing on it
+     *
      * @param currentLocation The location of the ground on which we lie.
      */
     @Override
@@ -28,14 +29,12 @@ public class Fire extends Item {
         value += 1;
         if (value % 4 == 0) {
             currentLocation.removeItem(this);
-        }
-        else{
+        } else {
             Actor ac = currentLocation.getActor();
-            if (ac!=null){
+            if (ac != null) {
                 ac.hurt(20);
                 new Display().println(ac + " standing on Fire got 20 damage");
             }
-
         }
     }
 }

@@ -7,7 +7,7 @@ import static game.Status.FIRE_ATTACK;
 
 public class FireAttackEffect extends Effect {
     /***
-     * Constructor.
+     * Constructor of FireAttackEffect.
      */
     public FireAttackEffect() {
         super("FireAttackEffect", '_', false);
@@ -15,6 +15,12 @@ public class FireAttackEffect extends Effect {
         turns = 21;
     }
 
+    /**
+     * Reduce 1 turn of FireAttackEffect
+     *
+     * @param currentLocation The location of the actor carrying this Item.
+     * @param actor           The actor carrying this Item.
+     */
     @Override
     public void tick(Location currentLocation, Actor actor) {
         turns -= 1;
@@ -25,7 +31,7 @@ public class FireAttackEffect extends Effect {
 
     /**
      * @param o The object that will be compared with
-     * @return if the given object is this InvincibleEffect object
+     * @return if the given object is this FireAttackEffect object
      */
     @Override
     public boolean equals(Object o) {
