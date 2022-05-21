@@ -7,6 +7,9 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actions.PickUpCoinAction;
 import game.reset.Resettable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static game.Status.RESETTABLE;
 //final
 /**
@@ -53,12 +56,16 @@ public class Coin extends Item implements Resettable {
             currentLocation.removeItem(this);
             this.removeCapability(RESETTABLE);
         }
+        List<Item> coinsToRemove = new ArrayList<>();
         for (Item item : currentLocation.getItems()) {
             if (item instanceof Coin) {
                 Coin coin = (Coin) item;
                 this.increase(coin);
-                currentLocation.removeItem(coin);
+                coinsToRemove.add(coin);
             }
+        }
+        for (Item item : coinsToRemove) {
+            currentLocation.removeItem(item);
         }
     }
 
