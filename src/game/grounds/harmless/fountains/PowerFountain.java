@@ -23,15 +23,14 @@ public class PowerFountain extends Fountain {
 
     @Override
     public void tick(Location location) {
-        if (isEmpty()) {
-            setTurnsToReplenished(5);
-            return;
-        }
         if (getTurnsToReplenished() > 0) {
             getWaters().add(new PowerWater());
             getWaters().add(new PowerWater());
             setCurrent(getCurrent() + 2);
             setTurnsToReplenished(getTurnsToReplenished() - 1);
+        }
+        if (isEmpty()) {
+            setTurnsToReplenished(5);
         }
     }
 

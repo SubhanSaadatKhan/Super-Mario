@@ -31,6 +31,7 @@ public class WarpPipe extends Ground implements JumpableGround, Resettable {
         map1 = initDefaultMap;
         map2 = initNewMap;
         spawnPiranha = false;
+        this.registerInstance();
     }
 
     /**
@@ -67,12 +68,11 @@ public class WarpPipe extends Ground implements JumpableGround, Resettable {
             location.addActor(new PiranhaPlant());
             spawnPiranha = true;
         }
-//        else if (this.hasCapability(RESETTABLE)){
-//            new Display().println("im innnnnnnnnn");
-//            if(location.getActor()==null && !location.map().equals(map2)){
-//                location.addActor(new PiranhaPlant());
-//            }
-//        }
+        else if (this.hasCapability(RESETTABLE)){
+            if(location.getActor() == null && !location.map().equals(map2)){
+                location.addActor(new PiranhaPlant());
+            }
+        }
     }
 
     /**
