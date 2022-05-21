@@ -2,7 +2,7 @@ package game.effects;
 
 import edu.monash.fit2099.engine.items.Item;
 
-public class Effect extends Item {
+public abstract class Effect extends Item {
 
     protected int turns; // The number of turns that the Effect can exist
 
