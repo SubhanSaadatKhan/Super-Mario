@@ -59,7 +59,7 @@ public class Coin extends Item implements Resettable {
         }
         List<Item> coinsToRemove = new ArrayList<>();
         for (Item item : currentLocation.getItems()) {
-            if (item instanceof Coin) {
+            if (item instanceof Coin && item != this) {
                 Coin coin = (Coin) item;
                 this.increase(coin);
                 coinsToRemove.add(coin);
