@@ -1,4 +1,4 @@
-package game.grounds.harmless.jumpablegrounds.teleportablegrounds;
+package game.grounds.harmless.jumpablegrounds.teleportable;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
@@ -13,7 +13,7 @@ import game.reset.Resettable;
 
 import static game.Status.RESETTABLE;
 import static game.Status.SPACE_SUIT;
-
+//FINAL
 /**
  * Class representing Warp Pipe
  */
@@ -106,7 +106,7 @@ public class WarpPipe extends Ground implements JumpableGround, Resettable {
                 if (location.map().equals(map1)) { //checks which map player currently on
                     return new ActionList(new TeleportAction(map1, map2, location, "to Lava Map")); //teleport action
                 }
-                return new ActionList(new TeleportAction(map1, map2, location, "to Game Map")); //teleport action
+                return new ActionList(new TeleportAction(map1, map2, location, "back to Mushroom Kingdom")); //teleport action
             }
         } else {
             return super.allowableActions(actor, location, direction);

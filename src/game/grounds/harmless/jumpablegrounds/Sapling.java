@@ -47,7 +47,7 @@ public class Sapling extends Tree {
         //produces $20 coin
         else {
             if (Math.random() <= 0.1) {
-                location.addItem(new Coin(200));
+                location.addItem(new Coin(20));
             }
         }
     }

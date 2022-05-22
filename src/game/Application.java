@@ -20,7 +20,7 @@ import game.grounds.harmless.fountains.HealthFountain;
 import game.grounds.harmless.fountains.PowerFountain;
 import game.grounds.harmless.jumpablegrounds.Sprout;
 import game.grounds.harmless.jumpablegrounds.Wall;
-import game.grounds.harmless.jumpablegrounds.teleportablegrounds.WarpPipe;
+import game.grounds.harmless.jumpablegrounds.teleportable.WarpPipe;
 
 /**
  * The main class for the Mario World game.
@@ -132,7 +132,7 @@ public class Application {
         lavaMap.at(x_random, y_random).addActor(new PrincessPeach());
 
 
-        Player mario = new Player("Player", 'm', 1000000);
+        Player mario = new Player("Player", 'm', 100);
         world.addPlayer(mario, gameMap.at(42, 10));
 
         gameMap.at(44, 11).addActor(new Toad());

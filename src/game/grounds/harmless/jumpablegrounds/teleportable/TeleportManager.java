@@ -1,4 +1,4 @@
-package game.grounds.harmless.jumpablegrounds.teleportablegrounds;
+package game.grounds.harmless.jumpablegrounds.teleportable;
 
 import edu.monash.fit2099.engine.positions.Location;
 
