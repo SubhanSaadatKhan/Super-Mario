@@ -15,12 +15,11 @@ import game.behaviours.WanderBehaviour;
 
 import static game.Status.RESETTABLE;
 //final
+
 /**
  * Class representing Goomba a little fungus guy.
  */
 public class Goomba extends Enemy {
-//	private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
-//	private Map<Integer, Behaviour> behaviours = new TreeMap<>();
 
     /**
      * Constructor.
@@ -78,7 +77,7 @@ public class Goomba extends Enemy {
             map.removeActor(this);
             return new DoNothingAction();
         }
-        return super.playTurn(actions,lastAction,map,display);
+        return super.playTurn(actions, lastAction, map, display);
     }
 
 }

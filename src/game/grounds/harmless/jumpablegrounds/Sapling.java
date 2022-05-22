@@ -10,6 +10,7 @@ import game.items.portable.Coin;
 
 import static game.Status.*;
 //final
+
 /**
  * Class representing Sapling the second stage of a Tree.
  */
@@ -73,24 +74,23 @@ public class Sapling extends Tree {
      */
     @Override
     public String jumped(Actor act, Location at, GameMap map) {
-        Actor actor = act;
-        if (actor.hasCapability(INVINCIBLE)) {
+        if (act.hasCapability(INVINCIBLE)) {
             map.moveActor(act, at); //moves actor on a successful jump
             at.setGround(new Dirt());
             at.addItem(new Coin(5));
-            return actor + " had moved to (" + at.x() + "," + at.y() + ")!";
+            return act + " had moved to (" + at.x() + "," + at.y() + ")!";
         }
-        if (actor.hasCapability(TALL)) {
+        if (act.hasCapability(TALL)) {
             map.moveActor(act, at); //moves actor on a successful jump
-            return actor + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
+            return act + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
         }
         if (Math.random() <= 0.8) {
             map.moveActor(act, at); //moves actor on a successful jump
-            return actor + " had a successfully jump at Sapling(" + at.x() + "," + at.y() + ")!";
+            return act + " had a successfully jump at Sapling(" + at.x() + "," + at.y() + ")!";
 
         } else {
-            actor.hurt(20); //damages actor on an unsuccessful jump
-            return actor + " fails to jump the Sapling, faced a 20 fall damage!";
+            act.hurt(20); //damages actor on an unsuccessful jump
+            return act + " fails to jump the Sapling, faced a 20 fall damage!";
         }
     }
 

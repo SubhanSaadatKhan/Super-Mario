@@ -3,10 +3,7 @@ package game.items.portable;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.items.PickUpItemAction;
-import game.actions.PickUpCoinAction;
 
-//import static game.Status.INTERACTWITHPRINCESS;
-import static game.Status.UNLOCK_PRINCESS;
 import static game.Status.UNLOCK_PRINCESS;
 
 /**
@@ -32,6 +29,7 @@ public class Key extends Item {
         actor.addCapability(UNLOCK_PRINCESS);
         return super.getPickUpAction(actor);
     }
+
     /**
      * To display the name of item
      *

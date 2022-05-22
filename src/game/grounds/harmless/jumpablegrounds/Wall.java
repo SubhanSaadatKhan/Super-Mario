@@ -10,6 +10,7 @@ import game.items.portable.Coin;
 import static game.Status.INVINCIBLE;
 import static game.Status.TALL;
 //final
+
 /**
  * Class representing Solid Wall.
  */
@@ -46,23 +47,22 @@ public class Wall extends HighGround {
      */
     @Override
     public String jumped(Actor act, Location at, GameMap map) {
-        Actor actor = act;
-        if (actor.hasCapability(INVINCIBLE)) {
+        if (act.hasCapability(INVINCIBLE)) {
             map.moveActor(act, at); //moves actor on a successful jump
             at.setGround(new Dirt());
             at.addItem(new Coin(5));
-            return actor + " had moved to (" + at.x() + "," + at.y() + ")!";
+            return act + " had moved to (" + at.x() + "," + at.y() + ")!";
         }
-        if (actor.hasCapability(TALL)) {
+        if (act.hasCapability(TALL)) {
             map.moveActor(act, at); //moves actor on a successful jump
-            return actor + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
+            return act + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
         }
         if (Math.random() <= 0.8) {
             map.moveActor(act, at);
-            return actor + " had a successfully jump at Wall(" + at.x() + "," + at.y() + ")!";
+            return act + " had a successfully jump at Wall(" + at.x() + "," + at.y() + ")!";
         } else {
-            actor.hurt(20);
-            return actor + " fails to jump the Wall, faced a 20 fall damage!";
+            act.hurt(20);
+            return act + " fails to jump the Wall, faced a 20 fall damage!";
         }
     }
 
@@ -76,7 +76,7 @@ public class Wall extends HighGround {
      */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
-        return super.allowableActions(actor,location,direction);
+        return super.allowableActions(actor, location, direction);
     }
 
     /**

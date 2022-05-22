@@ -8,6 +8,7 @@ import game.actors.players.Player;
 import game.items.portable.Coin;
 import game.items.consumables.magicalitems.PowerStar;
 //final
+
 /**
  * Action for trading with Toad
  */

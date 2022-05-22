@@ -18,6 +18,7 @@ import java.util.TreeMap;
 
 import static game.Status.*;
 //final
+
 /**
  * An abstract Class representing Enemy of the player.
  */
@@ -51,11 +52,10 @@ public abstract class Enemy extends Actor implements Resettable {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
-        if(otherActor.hasCapability(HOSTILE_TO_ENEMY) && this.getDisplayChar()!='D') {
-            actions.add(new AttackAction(this,direction));
-        }
-        else if (this.getDisplayChar()=='D' && otherActor.hasCapability(DESTRUCTIVE)){
-            actions.add(new AttackAction(this,direction));
+        if (otherActor.hasCapability(HOSTILE_TO_ENEMY) && this.getDisplayChar() != 'D') {
+            actions.add(new AttackAction(this, direction));
+        } else if (this.getDisplayChar() == 'D' && otherActor.hasCapability(DESTRUCTIVE)) {
+            actions.add(new AttackAction(this, direction));
         }
         if (otherActor.hasCapability(HOSTILE_TO_ENEMY) && otherActor.hasCapability(FIRE_ATTACK)) {
             actions.add(new FireAttackAction(this, direction));
@@ -73,7 +73,7 @@ public abstract class Enemy extends Actor implements Resettable {
      * @return the Action to be performed
      */
     @Override
-    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display){
+    public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         for (Behaviour Behaviour : behaviours.values()) {
             Action action = Behaviour.getAction(this, map);
             if (action != null)

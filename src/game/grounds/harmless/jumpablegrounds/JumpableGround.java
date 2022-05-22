@@ -1,15 +1,12 @@
 package game.grounds.harmless.jumpablegrounds;
 
-import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
-import game.actions.JumpAction;
-import game.reset.Resettable;
 
-import static game.Status.RESETTABLE;
+
 //final
+
 /**
  * Interface for Grounds that require a Jump used by JumpAction to jump over high grounds.
  */
@@ -24,9 +21,5 @@ public interface JumpableGround {
      * @return string indicating if player succeeds or fails while jumping
      */
     String jumped(Actor by, Location at, GameMap in);
-
-    /**
-     * An Abstract Class representing the Tree.
-     */
 
 }

@@ -18,7 +18,7 @@ public class PiranhaPlant extends Enemy {
     /**
      * Constructor
      */
-    public PiranhaPlant(){
+    public PiranhaPlant() {
         super("Piranha Plant", 'Y', 150);
         this.behaviours.put(0, new AttackBehaviour());
         setIntrinsicWeaponDamage(90);
@@ -33,6 +33,7 @@ public class PiranhaPlant extends Enemy {
     protected IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(getIntrinsicWeaponDamage(), "chomps");
     }
+
     /**
      * Adds the Attack action to the actionlist of player
      *
@@ -45,6 +46,7 @@ public class PiranhaPlant extends Enemy {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         return super.allowableActions(otherActor, direction, map);
     }
+
     /**
      * Select and return an action to perform on the current turn.
      *
@@ -62,6 +64,6 @@ public class PiranhaPlant extends Enemy {
             }
             this.removeCapability(RESETTABLE);
         }
-        return super.playTurn(actions,lastAction,map,display);
+        return super.playTurn(actions, lastAction, map, display);
     }
 }

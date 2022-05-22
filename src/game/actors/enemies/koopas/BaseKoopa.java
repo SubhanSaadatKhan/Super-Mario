@@ -71,7 +71,7 @@ public abstract class BaseKoopa extends Enemy {
         if (this.hasCapability(DORMANT)) {
             return new DoNothingAction();
         }
-        return super.playTurn(actions,lastAction,map,display);
+        return super.playTurn(actions, lastAction, map, display);
     }
 
     /**
@@ -84,6 +84,7 @@ public abstract class BaseKoopa extends Enemy {
 
     /**
      * String representation
+     *
      * @return
      */
     @Override

@@ -10,6 +10,7 @@ import game.items.Fire;
 
 import static game.Status.TALL;
 //final
+
 /**
  * A class that carries an attack action when the target actor is in his surroundings.
  */
@@ -33,7 +34,7 @@ public class AttackBehaviour implements Behaviour {
             if (actorPlayer != null) {
                 char ch = actorPlayer.getDisplayChar();
                 if (ch == 'm') {
-                    if (actor.getDisplayChar()=='B'){
+                    if (actor.getDisplayChar() == 'B') {
                         destination.addItem(new Fire());
                     }
                     return new AttackAction(actorPlayer, direction);

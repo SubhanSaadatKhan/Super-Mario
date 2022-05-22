@@ -3,6 +3,7 @@ package game.items.weapons;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 
 import static game.Status.DESTRUCTIVE;
+
 //final
 public class Wrench extends WeaponItem {
     /**

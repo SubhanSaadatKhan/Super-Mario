@@ -2,6 +2,7 @@ package game.actors.enemies.koopas;
 
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 //final
+
 /**
  * Class representing Koopa a little turtle.
  */

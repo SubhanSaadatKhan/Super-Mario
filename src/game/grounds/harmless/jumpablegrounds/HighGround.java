@@ -22,35 +22,36 @@ abstract class HighGround extends Ground implements JumpableGround {
 
     /**
      * Method to check if a particular actor is allowed to enter a ground
+     *
      * @param actor the Actor to check
      * @return
      */
     @Override
     public boolean canActorEnter(Actor actor) {
         char show = actor.getDisplayChar();
-        if (show == 'm' || show == 'g' || show == 'K') { //player cannot enter wall without jumping
-            return false;
-        }
-        return true;
+        //player cannot enter wall without jumping
+        return show != 'm' && show != 'g' && show != 'K';
     }
 
     /**
      * Adds the jump action to the action list of player
-     * @param actor the Actor acting
-     * @param location the current Location
+     *
+     * @param actor     the Actor acting
+     * @param location  the current Location
      * @param direction the direction of the Ground from the Actor
      * @return
      */
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
-        if (!direction.equals("")){
+        if (!direction.equals("")) {
             return new ActionList(new JumpAction(this, location, direction));
         }
-        return super.allowableActions(actor,location,direction);
+        return super.allowableActions(actor, location, direction);
     }
 
     /**
      * override this method to implement jump action functionality
+     *
      * @param by indicate who jumps the jumpable ground
      * @param at to indicate where in the game map the jumpable ground is jumped
      * @param in represents the map where jump is taking place

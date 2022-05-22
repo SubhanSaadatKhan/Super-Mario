@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.players.Player;
 import game.items.portable.Coin;
 //final
+
 /**
  * Action for picking up coins, and put coins into wallet
  */

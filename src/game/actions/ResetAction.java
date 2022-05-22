@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.reset.ResetManager;
 //final
+
 /**
  * Action for resetting the game
  */

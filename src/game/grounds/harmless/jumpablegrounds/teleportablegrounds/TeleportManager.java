@@ -1,6 +1,7 @@
 package game.grounds.harmless.jumpablegrounds.teleportablegrounds;
 
 import edu.monash.fit2099.engine.positions.Location;
+
 /**
  * Special Class that manages Teleportation action
  */
@@ -12,12 +13,13 @@ public class TeleportManager {
     /**
      * Constructor
      */
-    private TeleportManager(){
+    private TeleportManager() {
         this.destination = null;
     }
 
     /**
      * Instance provider
+     *
      * @return
      */
     public static TeleportManager getInstance() {
@@ -28,7 +30,8 @@ public class TeleportManager {
     }
 
     /**
-     * retrives location of player when he teleported from GameMap
+     * retrieves location of player when he teleported from GameMap
+     *
      * @return
      */
     public Location getDestination() {
@@ -37,6 +40,7 @@ public class TeleportManager {
 
     /**
      * stores location of player in GameMap
+     *
      * @param destination
      */
     public void setDestination(Location destination) {

@@ -17,13 +17,14 @@ import java.util.Random;
 
 import static game.Status.*;
 //final
+
 /**
  * Class representing Mature the third stage of a Tree.
  */
 public class Mature extends Tree {
     private int value;
     private boolean fertile_soil_around = true;
-    private Random random;
+    private final Random random;
 
     /**
      * Constructor
@@ -57,7 +58,7 @@ public class Mature extends Tree {
             if (value % 5 == 0 && fertile_soil_around) {
                 ArrayList<Location> fertileLocations = new ArrayList<>();
 
-                for (Exit item : new ArrayList<Exit>(location.getExits())) { // Copy the list in case the item wants to leave
+                for (Exit item : new ArrayList<>(location.getExits())) { // Copy the list in case the item wants to leave
                     Location by = item.getDestination();
                     Ground gr = by.getGround();
                     char ch = gr.getDisplayChar();
@@ -75,11 +76,10 @@ public class Mature extends Tree {
             double valu = Math.random();
             if (valu <= 0.50 && !location.containsAnActor()) {
 
-                if(valu<=0.25){
+                if (valu <= 0.25) {
                     BaseKoopa normalKoopa = new NormalKoopa();
                     location.addActor(normalKoopa);
-                }
-                else{
+                } else {
                     BaseKoopa flyingKoopa = new FlyingKoopa();
                     location.addActor(flyingKoopa);
                 }
@@ -110,23 +110,22 @@ public class Mature extends Tree {
      */
     @Override
     public String jumped(Actor act, Location at, GameMap map) {
-        Actor actor = act;
-        if (actor.hasCapability(INVINCIBLE)) {
+        if (act.hasCapability(INVINCIBLE)) {
             map.moveActor(act, at); //moves actor on a successful jump
             at.setGround(new Dirt());
             at.addItem(new Coin(5));
-            return actor + " had moved to (" + at.x() + "," + at.y() + ")!";
+            return act + " had moved to (" + at.x() + "," + at.y() + ")!";
         }
-        if (actor.hasCapability(TALL)) {
+        if (act.hasCapability(TALL)) {
             map.moveActor(act, at); //moves actor on a successful jump
-            return actor + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
+            return act + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
         }
         if (Math.random() <= 0.7) {
             map.moveActor(act, at); //moves actor on a successful jump
-            return actor + " had a successfully jump at Mature(" + at.x() + "," + at.y() + ")!";
+            return act + " had a successfully jump at Mature(" + at.x() + "," + at.y() + ")!";
         } else {
-            actor.hurt(30); //damages actor on an unsuccessful jump
-            return actor + " fails to jump the Mature,faced a 30 fall damage!";
+            act.hurt(30); //damages actor on an unsuccessful jump
+            return act + " fails to jump the Mature,faced a 30 fall damage!";
         }
     }
 

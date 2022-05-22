@@ -19,10 +19,11 @@ public class Bowser extends Enemy {
     /**
      * Constructor
      */
-    public Bowser(){
+    public Bowser() {
         super("Bowser", 'B', 500);
         setIntrinsicWeaponDamage(80);
     }
+
     /**
      * Creates a new IntrinsicWeapon
      *
@@ -60,10 +61,10 @@ public class Bowser extends Enemy {
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
         if (this.hasCapability(RESETTABLE)) {
             map.removeActor(this);
-            map.at(3,4).addActor(this);
+            map.at(3, 4).addActor(this);
             this.heal(this.getMaxHp());
             this.removeCapability(RESETTABLE);
         }
-        return super.playTurn(actions,lastAction,map,display);
+        return super.playTurn(actions, lastAction, map, display);
     }
 }

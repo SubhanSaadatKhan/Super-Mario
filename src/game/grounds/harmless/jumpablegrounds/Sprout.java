@@ -11,6 +11,7 @@ import game.items.portable.Coin;
 
 import static game.Status.*;
 //final
+
 /**
  * Class representing Sprout the first stage of a Tree.
  */
@@ -65,23 +66,22 @@ public class Sprout extends Tree {
      */
     @Override
     public String jumped(Actor act, Location at, GameMap map) {
-        Actor actor = act;
-        if (actor.hasCapability(INVINCIBLE)) {
+        if (act.hasCapability(INVINCIBLE)) {
             map.moveActor(act, at); //moves actor on a successful jump
             at.setGround(new Dirt());
             at.addItem(new Coin(5));
-            return actor + " had moved to (" + at.x() + "," + at.y() + ")!";
+            return act + " had moved to (" + at.x() + "," + at.y() + ")!";
         }
-        if (actor.hasCapability(TALL)) {
+        if (act.hasCapability(TALL)) {
             map.moveActor(act, at); //moves actor on a successful jump
-            return actor + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
+            return act + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
         }
         if (Math.random() <= 0.9) {
             map.moveActor(act, at); //moves actor on a successful jump
-            return actor + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
+            return act + " had a successfully jump at Sprout(" + at.x() + "," + at.y() + ")!";
         } else {
-            actor.hurt(10); //damages actor on an unsuccessful jump
-            return actor + " fails to jump the Sprout, faced a 10 fall damage!";
+            act.hurt(10); //damages actor on an unsuccessful jump
+            return act + " fails to jump the Sprout, faced a 10 fall damage!";
         }
     }
 

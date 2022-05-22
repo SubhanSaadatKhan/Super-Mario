@@ -2,14 +2,12 @@ package game.actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 
 public class UnlockAction extends Action {
     /**
-     *
      * @param actor The actor performing the action.
-     * @param map The map the actor is on.
+     * @param map   The map the actor is on.
      * @return
      */
     @Override

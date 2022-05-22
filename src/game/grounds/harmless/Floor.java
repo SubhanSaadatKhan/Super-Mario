@@ -3,6 +3,7 @@ package game.grounds.harmless;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 //final
+
 /**
  * A class that represents the floor inside a building.
  */
@@ -20,9 +21,7 @@ public class Floor extends Ground {
     @Override
     public boolean canActorEnter(Actor actor) {
         char actChar = actor.getDisplayChar();
-        if (actChar == 'g' || actChar == 'K' || actChar == 'F') { //Enemy cannot enter floor
-            return false;
-        }
-        return true;
+        //Enemy cannot enter floor
+        return actChar != 'g' && actChar != 'K' && actChar != 'F';
     }
 }

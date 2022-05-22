@@ -55,7 +55,6 @@ public class Application {
                 ".......................................................##.......................");
 
 
-
         List<String> map2 = Arrays.asList(
                 "....+............................................",
                 "............+............+.................._....",
@@ -71,7 +70,6 @@ public class Application {
                 "............_#___......................+.........");
 
 
-
         GameMap gameMap = new GameMap(groundFactory, map);
         world.addGameMap(gameMap);
 
@@ -81,57 +79,57 @@ public class Application {
         Random rand = new Random();
 
         //placing some sprouts randomly all over the GameMap
-        for(int i=0;i<25;i++){
+        for (int i = 0; i < 25; i++) {
             Sprout sprout = new Sprout();
             //gives a random value from 0-80
             int x_random = rand.nextInt(80);
             //gives a random value from 0-18
             int y_random = rand.nextInt(18);
 
-            Ground ground = gameMap.at(x_random,y_random).getGround();
+            Ground ground = gameMap.at(x_random, y_random).getGround();
 
             //checks if ground fertile
-            if (ground.getDisplayChar()=='.'){
-                gameMap.at(x_random,y_random).setGround(sprout);
+            if (ground.getDisplayChar() == '.') {
+                gameMap.at(x_random, y_random).setGround(sprout);
             }
         }
 
         //placing some Warp Pipes randomly all over the GameMap
-        for(int i=0;i<15;i++){
-            WarpPipe warpPipe = new WarpPipe(gameMap,lavaMap);
+        for (int i = 0; i < 15; i++) {
+            WarpPipe warpPipe = new WarpPipe(gameMap, lavaMap);
             //gives a random value from 0-80
             int x_random = rand.nextInt(80);
             //gives a random value from 0-18
             int y_random = rand.nextInt(18);
 
-            Ground ground = gameMap.at(x_random,y_random).getGround();
-            if (ground.getDisplayChar()=='.'){
-                gameMap.at(x_random,y_random).setGround(warpPipe);
+            Ground ground = gameMap.at(x_random, y_random).getGround();
+            if (ground.getDisplayChar() == '.') {
+                gameMap.at(x_random, y_random).setGround(warpPipe);
             }
         }
 
         //placing some lava randomly all over the LavaMap
-        for(int i=0;i<5;i++){
+        for (int i = 0; i < 5; i++) {
             Lava lava = new Lava();
             //gives a random value from 0-48
             int x_random = rand.nextInt(48);
             //gives a random value from 0-11
             int y_random = rand.nextInt(11);
-            lavaMap.at(x_random,y_random).setGround(lava);
+            lavaMap.at(x_random, y_random).setGround(lava);
 
         }
 
         //placing a Warp Pipe in the top left corner of LavaMap
-        lavaMap.at(0,0).setGround(new WarpPipe(gameMap,lavaMap));
+        lavaMap.at(0, 0).setGround(new WarpPipe(gameMap, lavaMap));
 
 
-        lavaMap.at(3,4).addActor(new Bowser());
+        lavaMap.at(3, 4).addActor(new Bowser());
 
         //gives a random value from 0-6
         int x_random = rand.nextInt(6);
         //gives a random value from 5-8
         int y_random = rand.nextInt(3) + 5;
-        lavaMap.at(x_random,y_random).addActor(new PrincessPeach());
+        lavaMap.at(x_random, y_random).addActor(new PrincessPeach());
 
 
         Player mario = new Player("Player", 'm', 1000000);

@@ -3,14 +3,12 @@ package game.grounds.harmless.jumpablegrounds;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
-import game.actions.JumpAction;
 import game.reset.Resettable;
 
 import static game.Status.RESETTABLE;
 
-abstract class Tree extends HighGround implements Resettable{
+abstract class Tree extends HighGround implements Resettable {
     /**
      * Constructor
      *
@@ -50,6 +48,7 @@ abstract class Tree extends HighGround implements Resettable{
 
     /**
      * override this method to implement jump action functionality
+     *
      * @param by indicate who jumps the jumpable ground
      * @param at to indicate where in the game map the jumpable ground is jumped
      * @param in represents the map where jump is taking place

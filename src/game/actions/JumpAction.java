@@ -8,13 +8,14 @@ import game.grounds.harmless.jumpablegrounds.JumpableGround;
 
 import static game.Status.INVINCIBLE;
 //final
+
 /**
  * Special Action for jumping high grounds.
  */
 public class JumpAction extends Action {
-    private JumpableGround jumpableGround;
-    private Location jumpableLocation;
-    private String direction;
+    private final JumpableGround jumpableGround;
+    private final Location jumpableLocation;
+    private final String direction;
 
     /**
      * Constructor
