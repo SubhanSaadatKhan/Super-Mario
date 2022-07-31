@@ -97,28 +97,28 @@ public class Player extends Actor implements Resettable {
         return this.hasCapability(TALL) ? Character.toUpperCase(super.getDisplayChar()) : super.getDisplayChar();
     }
 
-    @Override
-    protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(intrinsicWeaponDamage, "punches");
-    }
-
-    /**
-     * Accessor of intrinsicWeaponDamage
-     *
-     * @return The intrinsicWeaponDamage of the player
-     */
-    public int getIntrinsicWeaponDamage() {
-        return intrinsicWeaponDamage;
-    }
-
-    /**
-     * Mutator of intrinsicWeaponDamage
-     *
-     * @param intrinsicWeaponDamage The new intrinsicWeaponDamage
-     */
-    public void setIntrinsicWeaponDamage(int intrinsicWeaponDamage) {
-        this.intrinsicWeaponDamage = intrinsicWeaponDamage;
-    }
+//    @Override
+//    protected IntrinsicWeapon getIntrinsicWeapon() {
+//        return new IntrinsicWeapon(intrinsicWeaponDamage, "punches");
+//    }
+//
+//    /**
+//     * Accessor of intrinsicWeaponDamage
+//     *
+//     * @return The intrinsicWeaponDamage of the player
+//     */
+//    public int getIntrinsicWeaponDamage() {
+//        return intrinsicWeaponDamage;
+//    }
+//
+//    /**
+//     * Mutator of intrinsicWeaponDamage
+//     *
+//     * @param intrinsicWeaponDamage The new intrinsicWeaponDamage
+//     */
+//    public void setIntrinsicWeaponDamage(int intrinsicWeaponDamage) {
+//        this.intrinsicWeaponDamage = intrinsicWeaponDamage;
+//    }
 
     /**
      * Make the player resettable

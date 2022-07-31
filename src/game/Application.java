@@ -132,7 +132,7 @@ public class Application {
         lavaMap.at(x_random, y_random).addActor(new PrincessPeach());
 
 
-        Player mario = new Player("Player", 'm', 100);
+        Player mario = new Player("Player", 'm', 10000);
         world.addPlayer(mario, gameMap.at(42, 10));
 
         gameMap.at(44, 11).addActor(new Toad());

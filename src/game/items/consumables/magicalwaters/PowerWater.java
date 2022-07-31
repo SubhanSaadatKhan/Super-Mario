@@ -27,7 +27,7 @@ public class PowerWater extends Water {
     public void consumed(Actor actor, Location currentLocation) {
         if (actor instanceof Player) {
             Player player = (Player) actor;
-            player.setIntrinsicWeaponDamage(player.getIntrinsicWeaponDamage() + 15);
+//            player.setIntrinsicWeaponDamage(player.getIntrinsicWeaponDamage() + 15);
         } else if (actor instanceof Enemy) {
             Enemy enemy = (Enemy) actor;
             enemy.setIntrinsicWeaponDamage(enemy.getIntrinsicWeaponDamage() + 15);
